@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <title>Workshop Criando Meu Negócio Lucrativo</title>
+    <meta name="description" content="Crie sua consultoria de forma segura e validada, para conquistar liberdade de agenda sem comprometer seu padrão financeiro."/>
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+
+    <!-- Google Fonts (Montserrat + Inter from design_system) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Splitting.js -->
+    <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting-cells.css"/>
+    <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+
+    <!-- CountUp.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.8.0/countUp.umd.min.js"></script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.1/dist/lenis.min.js"></script>
+
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.12.0/tsparticles.slim.bundle.min.js"></script>
+
+    <style>
+        /* ══════════════════════════════════════════════
+           DESIGN SYSTEM TOKENS (from design_system2.html)
+           ══════════════════════════════════════════════ */
+        :root {
+            /* Colors */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+            --bg-glass: rgba(255, 255, 255, 0.7);
+            --bg-dark: #0A1A1C;
+            --text-primary: #0A1A1C;
+            --text-secondary: #6B7280;
+            --accent-gold: #B3A275;
+            --accent-green: #16e463;
+            --accent-glow: rgba(179, 162, 117, 0.4);
+            --accent-glow-green: rgba(22, 228, 99, 0.4);
+            --gradient-cta: linear-gradient(90deg, #00FF5F 0%, #25D366 100%);
+
+            /* Typography */
+            --font-primary: 'Montserrat', sans-serif;
+            --font-secondary: 'Inter', sans-serif;
+        }
+
+        /* ══════════════════════════════════════════════
+           RESET & BASE
+           ══════════════════════════════════════════════ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-secondary);
+            background-color: var(--bg-dark);
+            color: #FFFFFF;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ══════════════════════════════════════════════
+           HERO SECTION
+           ══════════════════════════════════════════════ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: var(--bg-dark);
+        }
+
+        /* Particles container */
+        #tsparticles {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Subtle grid overlay from design_system */
+        .hero-grid-overlay {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 2;
+            opacity: 0.5;
+        }
+
+        /* Gradient vignette */
+        .hero-vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 50%, transparent 0%, var(--bg-dark) 70%);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        /* ══════════════════════════════════════════════
+           HERO LAYOUT
+           ══════════════════════════════════════════════ */
+        .hero-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 5vw 60px;
+            display: grid;
+            grid-template-columns: 55% 45%;
+            align-items: center;
+            gap: 40px;
+        }
+
+        /* ══════════════════════════════════════════════
+           LEFT COLUMN – CONTENT
+           ══════════════════════════════════════════════ */
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        /* Workshop label badge */
+        .workshop-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            border-radius: 999px;
+            background: rgba(179, 162, 117, 0.12);
+            border: 1px solid rgba(179, 162, 117, 0.25);
+            font-family: var(--font-secondary);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 32px;
+            width: fit-content;
+            opacity: 0;
+        }
+
+        .workshop-label .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-gold);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--accent-gold); }
+            50% { opacity: 0.6; box-shadow: 0 0 20px var(--accent-gold); }
+        }
+
+        /* H1 Title */
+        .hero-title {
+            font-family: var(--font-primary);
+            font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+            font-weight: 900;
+            line-height: 1.12;
+            letter-spacing: -1.5px;
+            color: #FFFFFF;
+            margin-bottom: 24px;
+        }
+
+        .hero-title [data-splitting] .word { display: inline-block; }
+        .hero-title [data-splitting] .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(60px) rotateX(-40deg);
+            will-change: transform, opacity;
+        }
+
+        .hero-title .highlight-green {
+            color: var(--accent-green);
+            position: relative;
+        }
+
+        .hero-title .highlight-gold {
+            color: var(--accent-gold);
+        }
+
+        /* H2 Subtitle */
+        .hero-subtitle {
+            font-family: var(--font-secondary);
+            font-size: clamp(1rem, 1.8vw, 1.25rem);
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.7;
+            max-width: 540px;
+            margin-bottom: 40px;
+            opacity: 0;
+        }
+
+        /* CTA Button – Glowing Green from design_system */
+        .cta-wrapper {
+            margin-bottom: 48px;
+            opacity: 0;
+        }
+
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 20px 44px;
+            border-radius: 999px;
+            background: var(--gradient-cta);
+            color: #000;
+            font-family: var(--font-primary);
+            font-weight: 900;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 40px var(--accent-glow-green);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            will-change: transform;
+            animation: cta-pulse 2.5s ease-in-out infinite;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 15px 50px rgba(22, 228, 99, 0.5);
+            animation: none;
+        }
+
+        .btn-cta::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: none;
+        }
+
+        .btn-cta:hover::after {
+            animation: shimmer 0.8s ease forwards;
+        }
+
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes cta-pulse {
+            0%, 100% { box-shadow: 0 10px 40px var(--accent-glow-green); }
+            50% { box-shadow: 0 10px 60px rgba(22, 228, 99, 0.55); }
+        }
+
+        .btn-cta i { font-size: 18px; transition: transform 0.3s; }
+        .btn-cta:hover i { transform: translateX(4px); }
+
+        /* ══════════════════════════════════════════════
+           TICKET PROGRESS BAR
+           ══════════════════════════════════════════════ */
+        .ticket-block {
+            opacity: 0;
+        }
+
+        .ticket-urgency {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 14px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(255, 80, 50, 0.12);
+            border: 1px solid rgba(255, 80, 50, 0.25);
+            font-family: var(--font-secondary);
+            font-size: 12px;
+            font-weight: 700;
+            color: #FF6B4A;
+            letter-spacing: 0.5px;
+        }
+
+        .ticket-urgency i { animation: pulse-dot 1.5s ease-in-out infinite; }
+
+        .progress-label {
+            font-family: var(--font-secondary);
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-label .count {
+            color: var(--accent-green);
+            font-weight: 800;
+            font-size: 15px;
+        }
+
+        .progress-bar-track {
+            width: 100%;
+            max-width: 420px;
+            height: 10px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--gradient-cta);
+            border-radius: 999px;
+            position: relative;
+            box-shadow: 0 0 16px var(--accent-glow-green);
+            will-change: width;
+        }
+
+        .progress-bar-fill::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            background: #FFFFFF;
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--accent-green);
+        }
+
+        /* Price anchor */
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .price-old {
+            font-family: var(--font-secondary);
+            font-size: 15px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.35);
+            text-decoration: line-through;
+        }
+
+        .price-current {
+            font-family: var(--font-primary);
+            font-size: 32px;
+            font-weight: 900;
+            color: #FFFFFF;
+        }
+
+        .price-current span {
+            color: var(--accent-green);
+        }
+
+        /* ══════════════════════════════════════════════
+           RIGHT COLUMN – MENTOR IMAGE
+           ══════════════════════════════════════════════ */
+        .hero-right {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+        }
+
+        .mentor-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 520px;
+        }
+
+        /* Gold glow ring behind image */
+        .mentor-glow {
+            position: absolute;
+            inset: -20px;
+            border-radius: 32px;
+            background: radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 70%);
+            filter: blur(40px);
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        .mentor-image-wrapper img {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: auto;
+            border-radius: 24px;
+            object-fit: cover;
+            display: block;
+            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.4));
+        }
+
+        /* Decorative frame accent */
+        .mentor-frame {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            width: 120px;
+            height: 120px;
+            border-top: 3px solid var(--accent-gold);
+            border-right: 3px solid var(--accent-gold);
+            border-radius: 0 20px 0 0;
+            z-index: 3;
+            opacity: 0.6;
+        }
+
+        .mentor-frame-bottom {
+            position: absolute;
+            bottom: -12px;
+            left: -12px;
+            width: 120px;
+            height: 120px;
+            border-bottom: 3px solid var(--accent-gold);
+            border-left: 3px solid var(--accent-gold);
+            border-radius: 0 0 0 20px;
+            z-index: 3;
+            opacity: 0.6;
+        }
+
+        /* ══════════════════════════════════════════════
+           BOTTOM INFO BAR
+           ══════════════════════════════════════════════ */
+        .hero-info-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 20;
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 18px 5vw;
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            opacity: 0;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-secondary);
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .info-item i {
+            color: var(--accent-gold);
+            font-size: 16px;
+        }
+
+        /* ══════════════════════════════════════════════
+           MOBILE STICKY CTA
+           ══════════════════════════════════════════════ */
+        .mobile-sticky-cta {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            background: var(--bg-dark);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 14px 20px;
+            text-align: center;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .mobile-sticky-cta .btn-cta {
+            width: 100%;
+            justify-content: center;
+            padding: 16px 32px;
+            font-size: 14px;
+            animation: none;
+        }
+
+        /* ══════════════════════════════════════════════
+           RESPONSIVE
+           ══════════════════════════════════════════════ */
+
+        /* Tablet */
+        @media (max-width: 1023px) {
+            .hero-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+                padding: 100px 4vw 80px;
+            }
+
+            .hero-title {
+                font-size: clamp(1.8rem, 4vw, 2.8rem);
+            }
+
+            .mentor-image-wrapper { max-width: 380px; }
+        }
+
+        /* Mobile */
+        @media (max-width: 767px) {
+            .hero {
+                min-height: auto;
+            }
+
+            .hero {
+                min-height: auto;
+                overflow: visible;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                padding: 100px 6vw 40px;
+                gap: 48px;
+            }
+
+            .hero-left { order: 1; text-align: left; }
+            .hero-right { order: 2; }
+
+            .hero-title { font-size: clamp(1.8rem, 7vw, 2.6rem); letter-spacing: -1px; }
+
+            .mentor-image-wrapper {
+                max-width: 320px;
+                margin: 0 auto;
+            }
+
+            .mentor-frame, .mentor-frame-bottom { display: none; }
+
+            .hero-info-bar {
+                position: static;
+                gap: 12px;
+                padding: 32px 6vw;
+                justify-content: flex-start;
+                flex-direction: column;
+                backdrop-filter: none;
+                background: rgba(255,255,255,0.04);
+                border-top: 1px solid rgba(255,255,255,0.06);
+                inset: auto;
+            }
+
+            .info-item { font-size: 13px; }
+
+            .mobile-sticky-cta { display: block; }
+
+            .progress-bar-track { max-width: 100%; }
+
+            .price-current { font-size: 26px; }
+        }
+
+        /* Performance: will-change hints */
+        .hero-title .char,
+        .btn-cta,
+        .progress-bar-fill,
+        .hero-right {
+            will-change: transform, opacity;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ══════════════════════════════════════════════
+     HERO SECTION
+     ══════════════════════════════════════════════ -->
+<section class="hero" x-data="{ ticketsSold: 47, totalTickets: 50 }">
+
+    <!-- Particles Background -->
+    <div id="tsparticles"></div>
+
+    <!-- Grid Overlay -->
+    <div class="hero-grid-overlay"></div>
+
+    <!-- Vignette -->
+    <div class="hero-vignette"></div>
+
+    <!-- Main Container -->
+    <div class="hero-container">
+
+        <!-- ── LEFT COLUMN ── -->
+        <div class="hero-left">
+
+            <!-- Workshop Badge -->
+            <div class="workshop-label" id="hero-label">
+                <span class="dot"></span>
+                Workshop ao vivo
+            </div>
+
+            <!-- H1 with Splitting.js -->
+            <h1 class="hero-title" id="hero-title">
+                <span data-splitting>Crie sua consultoria de forma </span>
+                <span class="highlight-green" data-splitting>segura</span>
+                <span data-splitting> e </span>
+                <span class="highlight-gold" data-splitting>validada,</span><br/>
+                <span data-splitting>para conquistar </span>
+                <span class="highlight-green" data-splitting>liberdade de agenda</span>
+            </h1>
+
+            <!-- H2 Subtitle -->
+            <p class="hero-subtitle" id="hero-subtitle">
+                sem comprometer seu padrão financeiro — mesmo que você ainda esteja no mundo corporativo.
+            </p>
+
+            <!-- CTA Button -->
+            <div class="cta-wrapper" id="hero-cta">
+                <a href="#" class="btn-cta">
+                    <i class="fa-solid fa-bolt"></i>
+                    Quero Criar Minha Consultoria
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Ticket Progress Block -->
+            <div class="ticket-block" id="hero-tickets">
+
+                <div class="ticket-urgency">
+                    <i class="fa-solid fa-fire" style="color:#FF6B4A;"></i>
+                    Últimas 3 vagas pelo preço de lote atual
+                </div>
+
+                <div class="progress-label" style="max-width: 420px;">
+                    <span>Ingressos esgotando</span>
+                    <span class="count">
+                        <span id="countup-tickets">0</span> de 50
+                    </span>
+                </div>
+
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill" id="progress-fill"></div>
+                </div>
+
+                <div class="price-row">
+                    <span class="price-old">De R$697,00</span>
+                    <span class="price-current">por <span>R$49,00</span></span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ── RIGHT COLUMN ── -->
+        <div class="hero-right" id="hero-image">
+            <div class="mentor-image-wrapper">
+                <div class="mentor-glow"></div>
+                <div class="mentor-frame"></div>
+                <div class="mentor-frame-bottom"></div>
+                <img
+                    src="images/mentora-hero.png"
+                    alt="Mentora do Workshop Criando Meu Negócio Lucrativo"
+                    style="background-color: var(--bg-dark);"
+                    onerror="this.style.minHeight='500px'; this.style.background='linear-gradient(135deg, #0A1A1C 0%, #1a3a3e 100%)'; this.alt='Imagem da Mentora';"
+                />
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Info Bar -->
+    <div class="hero-info-bar" id="hero-info-bar">
+        <div class="info-item">
+            <i class="fa-regular fa-calendar"></i>
+            Sábado, 28 de Março
+        </div>
+        <div class="info-item">
+            <i class="fa-regular fa-clock"></i>
+            Das 8:30h às 12:30h
+        </div>
+        <div class="info-item">
+            <i class="fa-solid fa-globe"></i>
+            Online e ao vivo
+        </div>
+        <div class="info-item">
+            <i class="fa-solid fa-certificate" style="color: var(--accent-green);"></i>
+            Certificado incluso
+        </div>
+    </div>
+
+</section>
+
+<!-- Mobile Sticky CTA -->
+<div class="mobile-sticky-cta" id="mobile-cta">
+    <a href="#" class="btn-cta">
+        <i class="fa-solid fa-bolt"></i>
+        Garantir Minha Vaga — R$49
+    </a>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SCRIPTS
+     ══════════════════════════════════════════════ -->
+<script>
+    /* ── Lenis Smooth Scroll ── */
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smooth: true,
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Sync Lenis with GSAP ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+
+    /* ── tsParticles (subtle ambient particles) ── */
+    tsParticles.load("tsparticles", {
+        fullScreen: false,
+        fpsLimit: 60,
+        particles: {
+            number: { value: 30, density: { enable: true, area: 1200 } },
+            color: { value: ["#B3A275", "#16e463", "#FFFFFF"] },
+            opacity: { value: { min: 0.05, max: 0.15 }, animation: { enable: true, speed: 0.5 } },
+            size: { value: { min: 1, max: 3 } },
+            move: {
+                enable: true,
+                speed: 0.3,
+                direction: "none",
+                random: true,
+                outModes: "out",
+            },
+            links: { enable: false },
+        },
+        detectRetina: true,
+    });
+
+    /* ── Splitting.js init ── */
+    Splitting();
+
+    /* ── GSAP Master Timeline ── */
+    document.addEventListener('DOMContentLoaded', () => {
+        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+        // 1. Background already visible — start with label
+        tl.to("#hero-label", {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+        }, 0.3);
+
+        // 2. Splitting chars animate in
+        const chars = document.querySelectorAll(".hero-title .char");
+        tl.to(chars, {
+            opacity: 1,
+            y: 0,
+            rotateX: 0,
+            duration: 0.6,
+            stagger: 0.015,
+        }, 0.5);
+
+        // 3. Subtitle
+        tl.to("#hero-subtitle", {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+        }, 1.2);
+
+        // 4. CTA Button
+        tl.to("#hero-cta", {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+        }, 1.5);
+
+        // 5. Ticket block
+        tl.to("#hero-tickets", {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            onComplete: animateProgress,
+        }, 1.8);
+
+        // 6. Mentor image
+        tl.to("#hero-image", {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: "power2.out",
+        }, 1.0);
+
+        // 7. Info bar
+        tl.to("#hero-info-bar", {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+        }, 2.2);
+
+        // Set initial states
+        gsap.set("#hero-label", { opacity: 0, y: 20 });
+        gsap.set("#hero-subtitle", { opacity: 0, y: 30 });
+        gsap.set("#hero-cta", { opacity: 0, y: 30 });
+        gsap.set("#hero-tickets", { opacity: 0, y: 30 });
+        gsap.set("#hero-image", { opacity: 0, x: 80 });
+        gsap.set("#hero-info-bar", { opacity: 0, y: 20 });
+    });
+
+    /* ── Progress Bar Animation ── */
+    function animateProgress() {
+        // Animate progress bar fill to 94%
+        gsap.to("#progress-fill", {
+            width: "94%",
+            duration: 1.8,
+            ease: "power2.out",
+        });
+
+        // CountUp.js for ticket number
+        if (typeof countUp !== 'undefined' || typeof CountUp !== 'undefined') {
+            const CU = window.countUp || window.CountUp;
+            const counter = new CU.CountUp("countup-tickets", 47, {
+                startVal: 0,
+                duration: 2,
+                useEasing: true,
+            });
+            counter.start();
+        }
+    }
+
+    /* ── Parallax on Mentor Image (ScrollTrigger) ── */
+    gsap.to(".mentor-image-wrapper", {
+        y: -40,
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+        }
+    });
+
+    /* ── Mobile Sticky CTA visibility ── */
+    if (window.innerWidth < 768) {
+        const mobileCta = document.getElementById('mobile-cta');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                mobileCta.style.transform = 'translateY(0)';
+                mobileCta.style.opacity = '1';
+            } else {
+                mobileCta.style.transform = 'translateY(100%)';
+                mobileCta.style.opacity = '0';
+            }
+        });
+        mobileCta.style.transition = 'transform 0.3s, opacity 0.3s';
+        mobileCta.style.transform = 'translateY(100%)';
+        mobileCta.style.opacity = '0';
+    }
+</script>
+
+</body>
+</html>
