@@ -681,10 +681,9 @@
             background: rgba(255, 255, 255, 0.025);
             border: 1px solid rgba(179, 162, 117, 0.15);
             border-radius: 16px;
-            padding: 36px 32px 36px 36px;
+            padding: 0;
             display: flex;
-            align-items: flex-start;
-            gap: 24px;
+            flex-direction: column;
             overflow: hidden;
             opacity: 0;
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
@@ -696,7 +695,7 @@
             border-color: rgba(179, 162, 117, 0.4);
         }
 
-        /* Animated border bottom (drawn on scroll) */
+        /* Animated border bottom */
         .pv-card .card-border-draw {
             position: absolute;
             bottom: 0;
@@ -708,32 +707,33 @@
             transform-origin: left;
         }
 
-        /* Decorative number background */
+        /* Card header row: number + icon */
+        .pv-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 28px 16px;
+            border-bottom: 1px solid rgba(179, 162, 117, 0.08);
+        }
+
+        /* Number — fully visible, no overlap */
         .pv-card-number {
-            position: absolute;
-            top: 50%;
-            right: 24px;
-            transform: translateY(-50%);
             font-family: var(--font-primary);
-            font-size: 110px;
+            font-size: 52px;
             font-weight: 900;
-            color: rgba(179, 162, 117, 0.05);
+            color: rgba(179, 162, 117, 0.2);
             line-height: 1;
-            pointer-events: none;
-            z-index: 0;
+            letter-spacing: -2px;
             transition: color 0.3s ease;
             user-select: none;
-            letter-spacing: -4px;
         }
 
         .pv-card:hover .pv-card-number {
-            color: rgba(179, 162, 117, 0.1);
+            color: rgba(179, 162, 117, 0.4);
         }
 
-        /* Icon area */
+        /* Icon */
         .pv-card-icon {
-            position: relative;
-            z-index: 1;
             flex-shrink: 0;
             width: 48px;
             height: 48px;
@@ -758,9 +758,7 @@
 
         /* Card text */
         .pv-card-text {
-            position: relative;
-            z-index: 1;
-            flex: 1;
+            padding: 20px 28px 28px;
         }
 
         .pv-card-text .pain {
@@ -805,14 +803,16 @@
                 padding: 72px 6vw 80px;
             }
 
-            .pv-card {
-                padding: 28px 24px;
-                gap: 16px;
+            .pv-card-header {
+                padding: 18px 20px 12px;
+            }
+
+            .pv-card-text {
+                padding: 16px 20px 24px;
             }
 
             .pv-card-number {
-                font-size: 72px;
-                right: 12px;
+                font-size: 36px;
             }
 
             .pv-card-icon {
