@@ -711,22 +711,23 @@
         /* Decorative number background */
         .pv-card-number {
             position: absolute;
-            top: -12px;
-            right: 16px;
+            top: 50%;
+            right: 24px;
+            transform: translateY(-50%);
             font-family: var(--font-primary);
-            font-size: 80px;
+            font-size: 110px;
             font-weight: 900;
-            color: rgba(179, 162, 117, 0.06);
+            color: rgba(179, 162, 117, 0.05);
             line-height: 1;
             pointer-events: none;
             z-index: 0;
-            transition: opacity 0.3s ease;
+            transition: color 0.3s ease;
             user-select: none;
+            letter-spacing: -4px;
         }
 
         .pv-card:hover .pv-card-number {
-            opacity: 1;
-            color: rgba(179, 162, 117, 0.12);
+            color: rgba(179, 162, 117, 0.1);
         }
 
         /* Icon area */
@@ -810,8 +811,7 @@
             }
 
             .pv-card-number {
-                font-size: 56px;
-                top: -6px;
+                font-size: 72px;
                 right: 12px;
             }
 
