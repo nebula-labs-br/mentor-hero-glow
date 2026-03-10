@@ -954,6 +954,7 @@
             grid-template-columns: 55% 45%;
             gap: 2rem;
             align-items: center;
+            overflow: hidden;
         }
 
         /* Left column — tablets image */
@@ -964,25 +965,32 @@
 
         .wa-image-wrap {
             position: relative;
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 400px;
         }
 
         .wa-image-wrap img {
             width: 100%;
             max-width: 100%;
+            min-width: 380px;
             height: auto;
+            min-height: 360px;
+            object-fit: contain;
             display: block;
             border-radius: 12px;
             position: relative;
             z-index: 2;
             animation: wa-float 4s ease-in-out infinite;
-            transform: rotate(-2deg);
+            transform: rotate(-2deg) scale(1.15);
         }
 
         /* Float animation */
         @keyframes wa-float {
-            0%, 100% { transform: translateY(0) rotate(-2deg); }
-            50% { transform: translateY(-8px) rotate(-2deg); }
+            0%, 100% { transform: translateY(0) rotate(-2deg) scale(1.15); }
+            50% { transform: translateY(-8px) rotate(-2deg) scale(1.15); }
         }
 
         /* Golden glow around image */
