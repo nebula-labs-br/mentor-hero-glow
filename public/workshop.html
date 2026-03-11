@@ -969,28 +969,25 @@
             align-items: center;
             justify-content: center;
             width: 100%;
-            min-height: 400px;
         }
 
         .wa-image-wrap img {
             width: 100%;
-            max-width: 100%;
-            min-width: 380px;
+            max-width: 320px;
             height: auto;
-            min-height: 360px;
             object-fit: contain;
             display: block;
             border-radius: 12px;
             position: relative;
             z-index: 2;
             animation: wa-float 4s ease-in-out infinite;
-            transform: rotate(-2deg) scale(1.15);
+            transform: rotate(-2deg);
         }
 
         /* Float animation */
         @keyframes wa-float {
-            0%, 100% { transform: translateY(0) rotate(-2deg) scale(1.15); }
-            50% { transform: translateY(-8px) rotate(-2deg) scale(1.15); }
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-8px) rotate(-2deg); }
         }
 
         /* Golden glow around image */
