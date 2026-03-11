@@ -2539,6 +2539,163 @@
     });
 
 
+    /* ══════════════════════════════════════════════
+       FIFTH FOLD — GSAP ANIMATIONS (MENTORA)
+       ══════════════════════════════════════════════ */
+
+    // Divider 4
+    gsap.to("#section-divider-4", {
+        scaleX: 1,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#section-divider-4",
+            start: "top 90%",
+            toggleActions: "play none none none",
+        }
+    });
+
+    // Watermark subtle parallax
+    gsap.to("#mentora-watermark", {
+        y: -60,
+        ease: "none",
+        scrollTrigger: {
+            trigger: "#mentora-section",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+        }
+    });
+
+    // Label
+    gsap.to("#mentora-label", {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#mentora-section",
+            start: "top 80%",
+            toggleActions: "play none none none",
+        }
+    });
+    gsap.set("#mentora-label", { opacity: 0, y: 15 });
+
+    // Title line
+    gsap.to("#mentora-title-line", {
+        scaleX: 1,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#mentora-title",
+            start: "top 80%",
+            toggleActions: "play none none none",
+        }
+    });
+
+    // Title chars
+    if (typeof Splitting !== 'undefined') {
+        Splitting({ target: '#mentora-title [data-splitting]' });
+    }
+    const mentoraChars = document.querySelectorAll("#mentora-title .char");
+    gsap.to(mentoraChars, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0.06,
+        ease: "power3.out",
+        scrollTrigger: {
+            trigger: "#mentora-title",
+            start: "top 80%",
+            toggleActions: "play none none none",
+        }
+    });
+
+    // Image slides in from left
+    gsap.to("#mentora-img", {
+        opacity: 1,
+        x: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#mentora-img",
+            start: "top 82%",
+            toggleActions: "play none none none",
+        }
+    });
+    gsap.set("#mentora-img", { x: -40 });
+
+    // Image parallax
+    gsap.to("#mentora-img", {
+        y: -20,
+        ease: "none",
+        scrollTrigger: {
+            trigger: "#mentora-section",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+        }
+    });
+
+    // Name
+    gsap.to("#mentora-name", {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#mentora-name",
+            start: "top 88%",
+            toggleActions: "play none none none",
+        }
+    });
+    gsap.set("#mentora-name", { opacity: 0, y: 15 });
+
+    // Role
+    gsap.to("#mentora-role", {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#mentora-role",
+            start: "top 88%",
+            toggleActions: "play none none none",
+        },
+        delay: 0.1,
+    });
+    gsap.set("#mentora-role", { opacity: 0, y: 10 });
+
+    // Bio paragraphs stagger
+    ["#mentora-bio-1", "#mentora-bio-2", "#mentora-bio-3"].forEach((id, i) => {
+        gsap.to(id, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: id,
+                start: "top 90%",
+                toggleActions: "play none none none",
+            },
+            delay: i * 0.12,
+        });
+        gsap.set(id, { opacity: 0, y: 20 });
+    });
+
+    // Stats
+    gsap.to("#mentora-stats", {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#mentora-stats",
+            start: "top 90%",
+            toggleActions: "play none none none",
+        }
+    });
+    gsap.set("#mentora-stats", { opacity: 0, y: 20 });
 
 
 </script>
