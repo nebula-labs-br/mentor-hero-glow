@@ -1609,7 +1609,7 @@
     /* ── Fifth Fold — Authority Section ── */
     .mentora-section {
         position: relative;
-        background: linear-gradient(180deg, #1a1a14 0%, #1f1d15 30%, #1c1912 60%, #171510 100%);
+        background: linear-gradient(180deg, #D7DADD 0%, #CDD1D5 50%, #C8CCD0 100%);
         padding: 120px 5vw 140px;
         overflow: hidden;
     }
@@ -1635,27 +1635,14 @@
         width: 800px;
         height: 800px;
         border-radius: 50%;
-        background: radial-gradient(ellipse at center, rgba(179, 162, 117, 0.04) 0%, transparent 70%);
+        background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.03) 0%, transparent 70%);
         pointer-events: none;
         z-index: 0;
     }
 
-    /* Background watermark word */
+    /* Background watermark word — hidden */
     .mentora-watermark {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(-8deg);
-        font-family: var(--font-primary);
-        font-size: clamp(6rem, 14vw, 14rem);
-        font-weight: 900;
-        color: rgba(179, 162, 117, 0.03);
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        white-space: nowrap;
-        pointer-events: none;
-        z-index: 0;
-        user-select: none;
+        display: none;
     }
 
     .mentora-inner {
@@ -1672,14 +1659,14 @@
         gap: 8px;
         padding: 8px 20px;
         border-radius: 999px;
-        background: rgba(179, 162, 117, 0.1);
-        border: 1px solid rgba(179, 162, 117, 0.2);
+        background: rgba(30, 30, 30, 0.08);
+        border: 1px solid rgba(30, 30, 30, 0.15);
         font-family: var(--font-secondary);
         font-size: 11px;
         font-weight: 800;
         letter-spacing: 3px;
         text-transform: uppercase;
-        color: var(--accent-gold);
+        color: #2a2a2a;
         margin-bottom: 20px;
         width: fit-content;
     }
@@ -1687,9 +1674,9 @@
     .mentora-label .dot {
         width: 6px;
         height: 6px;
-        background: var(--accent-gold);
+        background: #2a2a2a;
         border-radius: 50%;
-        box-shadow: 0 0 8px var(--accent-gold);
+        box-shadow: none;
     }
 
     /* Section title */
@@ -1699,13 +1686,13 @@
         font-weight: 800;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: #FFFFFF;
+        color: #1a1a1a;
         margin-bottom: 16px;
         line-height: 1.2;
     }
 
     .mentora-title .gold {
-        color: var(--accent-gold);
+        color: #8B7A3E;
     }
 
     .mentora-title [data-splitting] .word { display: inline-block; }
@@ -1774,7 +1761,7 @@
         position: absolute;
         inset: 0;
         border-radius: 16px;
-        background: radial-gradient(ellipse at center, transparent 50%, rgba(13, 34, 36, 0.6) 100%);
+        background: radial-gradient(ellipse at center, transparent 50%, rgba(215, 218, 221, 0.6) 100%);
         z-index: 3;
         pointer-events: none;
     }
@@ -1817,7 +1804,7 @@
         font-family: var(--font-primary);
         font-size: clamp(1.6rem, 2.5vw, 2.2rem);
         font-weight: 800;
-        color: #FFFFFF;
+        color: #1a1a1a;
         margin-bottom: 4px;
         opacity: 0;
     }
@@ -1826,7 +1813,7 @@
         font-family: var(--font-secondary);
         font-size: 14px;
         font-weight: 600;
-        color: var(--accent-gold);
+        color: #8B7A3E;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         margin-bottom: 28px;
@@ -1837,19 +1824,19 @@
         font-family: var(--font-secondary);
         font-size: 15px;
         font-weight: 400;
-        color: rgba(255, 255, 255, 0.65);
+        color: rgba(0, 0, 0, 0.6);
         line-height: 1.8;
         margin-bottom: 20px;
         opacity: 0;
     }
 
     .mentora-bio-text strong {
-        color: #FFFFFF;
+        color: #1a1a1a;
         font-weight: 600;
     }
 
     .mentora-bio-text .gold-highlight {
-        color: var(--accent-gold);
+        color: #8B7A3E;
         font-weight: 600;
     }
 
@@ -1859,7 +1846,7 @@
         gap: 32px;
         margin-top: 12px;
         padding-top: 28px;
-        border-top: 1px solid rgba(179, 162, 117, 0.12);
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
         opacity: 0;
     }
 
@@ -1873,7 +1860,7 @@
         font-family: var(--font-primary);
         font-size: 28px;
         font-weight: 900;
-        color: var(--accent-gold);
+        color: #8B7A3E;
         line-height: 1;
     }
 
@@ -1881,7 +1868,7 @@
         font-family: var(--font-secondary);
         font-size: 12px;
         font-weight: 500;
-        color: rgba(255, 255, 255, 0.45);
+        color: rgba(0, 0, 0, 0.45);
         text-transform: uppercase;
         letter-spacing: 0.05em;
     }
@@ -2003,7 +1990,7 @@
                         <span class="mentora-stat-label">Consultores formados</span>
                     </div>
                     <div class="mentora-stat">
-                        <span class="mentora-stat-number">6</span>
+                        <span class="mentora-stat-number">7</span>
                         <span class="mentora-stat-label">Dígitos anuais</span>
                     </div>
                 </div>
