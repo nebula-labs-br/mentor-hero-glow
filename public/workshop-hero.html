@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Workshop Criando Minha Consultoria Lucrativa</title>
+    <meta name="description" content="Uma manhã de imersão prática para estruturar sua Consultoria Empresarial com clareza, método e posicionamento premium.">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+    <!-- Splitting.js -->
+    <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css">
+    <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting-cells.css">
+    <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+
+    <!-- CountUp.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.8.0/countUp.umd.min.js"></script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+
+    <style>
+        /* ══════════════════════════════════════════════
+           DESIGN SYSTEM TOKENS (from design_system2.html)
+           ══════════════════════════════════════════════ */
+        :root {
+            /* Colors */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+            --bg-glass: rgba(255, 255, 255, 0.7);
+            --bg-dark: #0A1A1C;
+            --text-primary: #0A1A1C;
+            --text-secondary: #6B7280;
+            --accent-gold: #B3A275;
+            --accent-green: #16e463;
+            --accent-glow: rgba(179, 162, 117, 0.4);
+            --accent-glow-green: rgba(22, 228, 99, 0.4);
+            --gradient-cta: linear-gradient(90deg, #00FF5F, #25D366);
+
+            /* Typography */
+            --font-primary: 'Montserrat', sans-serif;
+            --font-secondary: 'Inter', sans-serif;
+
+            /* Spacing */
+            --section-padding: 120px 5vw;
+        }
+
+        /* ══════════════════════════════════════════════
+           RESET & BASE
+           ══════════════════════════════════════════════ */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            background: var(--bg-dark);
+            color: #fff;
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        /* ══════════════════════════════════════════════
+           HERO SECTION
+           ══════════════════════════════════════════════ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-dark);
+        }
+
+        /* ── Particles Background ── */
+        #tsparticles {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+
+        /* ── Grid Pattern Overlay ── */
+        .hero__grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(179, 162, 117, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(179, 162, 117, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* ── Radial Glow ── */
+        .hero__glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(179, 162, 117, 0.08) 0%, transparent 70%);
+            top: 50%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .hero__glow--right {
+            left: auto;
+            right: -10%;
+            top: 60%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(22, 228, 99, 0.05) 0%, transparent 70%);
+        }
+
+        /* ── Clip Reveal Columns ── */
+        .hero__clip-columns {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .clip-col {
+            border-right: 1px solid rgba(179, 162, 117, 0.03);
+            height: 100%;
+            clip-path: inset(100% 0 0 0);
+            background: linear-gradient(to bottom, rgba(179, 162, 117, 0.02), transparent);
+        }
+
+        .clip-col.active {
+            clip-path: inset(0 0 0 0);
+            transition: clip-path 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ── Hero Container ── */
+        .hero__container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 1340px;
+            margin: 0 auto;
+            padding: 100px 5vw 80px;
+            display: grid;
+            grid-template-columns: 55% 45%;
+            align-items: center;
+            gap: 40px;
+        }
+
+        /* ══════════════════════════════════════════════
+           LEFT COLUMN — Content
+           ══════════════════════════════════════════════ */
+        .hero__content {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        /* Badge */
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-family: var(--font-secondary);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            background: rgba(179, 162, 117, 0.1);
+            border: 1px solid rgba(179, 162, 117, 0.2);
+            margin-bottom: 28px;
+            width: fit-content;
+            opacity: 0;
+        }
+
+        .hero__badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            box-shadow: 0 0 12px var(--accent-gold);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.8); }
+        }
+
+        /* H1 Title */
+        .hero__title {
+            font-family: var(--font-primary);
+            font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+            font-weight: 900;
+            line-height: 1.08;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero__title [data-splitting] .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(60px) rotateX(-40deg);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero__title [data-splitting].splitting .char {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
+        }
+
+        .hero__title .text-outline {
+            -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.7);
+            color: transparent;
+        }
+
+        .hero__title .text-gold {
+            color: var(--accent-gold);
+        }
+
+        .hero__title .text-gold .char {
+            background: linear-gradient(90deg, var(--accent-gold), #D4C89A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero__title .text-white {
+            color: #fff;
+        }
+
+        /* Subtitle */
+        .hero__subtitle {
+            font-family: var(--font-secondary);
+            font-size: clamp(1rem, 1.4vw, 1.15rem);
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+            max-width: 520px;
+            margin-bottom: 36px;
+            opacity: 0;
+        }
+
+        /* CTA Button */
+        .hero__cta-wrap {
+            margin-bottom: 40px;
+            opacity: 0;
+        }
+
+        .hero__cta {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 40px;
+            border-radius: 999px;
+            background: var(--gradient-cta);
+            color: #000;
+            font-family: var(--font-primary);
+            font-weight: 900;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(22, 228, 99, 0.35);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.3s;
+            animation: cta-pulse 2.5s ease-in-out infinite;
+        }
+
+        .hero__cta:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 16px 50px rgba(22, 228, 99, 0.5);
+            animation-play-state: paused;
+        }
+
+        @keyframes cta-pulse {
+            0%, 100% { box-shadow: 0 10px 40px rgba(22, 228, 99, 0.35); }
+            50% { box-shadow: 0 10px 60px rgba(22, 228, 99, 0.55); }
+        }
+
+        .hero__cta i {
+            transition: transform 0.3s;
+        }
+
+        .hero__cta:hover i {
+            transform: translateX(4px);
+        }
+
+        /* ══════════════════════════════════════════════
+           PROGRESS / TICKETS BAR
+           ══════════════════════════════════════════════ */
+        .hero__tickets {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(179, 162, 117, 0.15);
+            border-radius: 20px;
+            padding: 28px 32px;
+            max-width: 520px;
+            opacity: 0;
+        }
+
+        .tickets__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .tickets__label {
+            font-family: var(--font-primary);
+            font-weight: 800;
+            font-size: 14px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tickets__label i {
+            color: #FF6B35;
+            animation: flame 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes flame {
+            0% { transform: scale(1) rotate(-3deg); }
+            100% { transform: scale(1.15) rotate(3deg); }
+        }
+
+        .tickets__count {
+            font-family: var(--font-secondary);
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .tickets__count strong {
+            color: var(--accent-green);
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* Progress Bar */
+        .tickets__bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 999px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .tickets__bar-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 999px;
+            background: var(--gradient-cta);
+            box-shadow: 0 0 20px rgba(22, 228, 99, 0.4);
+            transition: width 2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Pricing */
+        .tickets__pricing {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .tickets__old-price {
+            font-family: var(--font-secondary);
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.35);
+            text-decoration: line-through;
+            font-weight: 500;
+        }
+
+        .tickets__label-price {
+            font-family: var(--font-secondary);
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+        }
+
+        .tickets__current-price {
+            font-family: var(--font-primary);
+            font-size: 42px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .tickets__current-price span {
+            font-size: 22px;
+            font-weight: 700;
+            vertical-align: super;
+        }
+
+        .tickets__urgency {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-secondary);
+            font-size: 12px;
+            font-weight: 600;
+            color: #FF6B35;
+            letter-spacing: 0.5px;
+        }
+
+        .tickets__urgency i {
+            font-size: 11px;
+        }
+
+        /* ── Event Info Row ── */
+        .hero__event-info {
+            display: flex;
+            gap: 24px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            opacity: 0;
+        }
+
+        .event-info__item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-secondary);
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .event-info__item i {
+            color: var(--accent-gold);
+            font-size: 14px;
+            width: 18px;
+            text-align: center;
+        }
+
+        /* ══════════════════════════════════════════════
+           RIGHT COLUMN — Mentora Image
+           ══════════════════════════════════════════════ */
+        .hero__image-col {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            min-height: 580px;
+        }
+
+        .hero__image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 460px;
+            opacity: 0;
+        }
+
+        /* Decorative frame */
+        .hero__image-frame {
+            position: absolute;
+            inset: -12px;
+            border: 1px solid rgba(179, 162, 117, 0.2);
+            border-radius: 24px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero__image-frame::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 30px;
+            right: 30px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        }
+
+        .hero__image-frame::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 30px;
+            right: 30px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        }
+
+        /* Corner accents */
+        .frame-corner {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            z-index: 2;
+        }
+
+        .frame-corner--tl {
+            top: -2px;
+            left: -2px;
+            border-top: 2px solid var(--accent-gold);
+            border-left: 2px solid var(--accent-gold);
+            border-top-left-radius: 12px;
+        }
+
+        .frame-corner--tr {
+            top: -2px;
+            right: -2px;
+            border-top: 2px solid var(--accent-gold);
+            border-right: 2px solid var(--accent-gold);
+            border-top-right-radius: 12px;
+        }
+
+        .frame-corner--bl {
+            bottom: -2px;
+            left: -2px;
+            border-bottom: 2px solid var(--accent-gold);
+            border-left: 2px solid var(--accent-gold);
+            border-bottom-left-radius: 12px;
+        }
+
+        .frame-corner--br {
+            bottom: -2px;
+            right: -2px;
+            border-bottom: 2px solid var(--accent-gold);
+            border-right: 2px solid var(--accent-gold);
+            border-bottom-right-radius: 12px;
+        }
+
+        /* Image */
+        .hero__image {
+            width: 100%;
+            height: auto;
+            max-height: 75vh;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 20px;
+            display: block;
+            position: relative;
+            z-index: 3;
+            background: linear-gradient(135deg, rgba(179, 162, 117, 0.2), rgba(10, 26, 28, 0.8));
+        }
+
+        /* Glow behind image */
+        .hero__image-glow {
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+            background: radial-gradient(circle, rgba(179, 162, 117, 0.15) 0%, transparent 70%);
+            filter: blur(60px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ── Vignette overlay on image ── */
+        .hero__image-vignette {
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            background: linear-gradient(to top,
+                rgba(10, 26, 28, 0.7) 0%,
+                transparent 40%,
+                transparent 80%,
+                rgba(10, 26, 28, 0.3) 100%);
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        /* ══════════════════════════════════════════════
+           MOBILE STICKY CTA BAR
+           ══════════════════════════════════════════════ */
+        .mobile-cta-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            padding: 12px 20px;
+            padding-bottom: calc(12px + env(safe-area-inset-bottom));
+            background: rgba(10, 26, 28, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(179, 162, 117, 0.15);
+        }
+
+        .mobile-cta-bar .hero__cta {
+            width: 100%;
+            justify-content: center;
+            font-size: 14px;
+            padding: 16px 24px;
+            animation: none;
+        }
+
+        /* ══════════════════════════════════════════════
+           RESPONSIVE
+           ══════════════════════════════════════════════ */
+
+        /* Tablet */
+        @media (max-width: 1023px) {
+            .hero__container {
+                grid-template-columns: 1fr;
+                padding: 100px 6vw 60px;
+                gap: 48px;
+            }
+
+            .hero__content {
+                text-align: center;
+                align-items: center;
+            }
+
+            .hero__subtitle {
+                max-width: 600px;
+            }
+
+            .hero__tickets {
+                max-width: 480px;
+            }
+
+            .hero__image-col {
+                min-height: auto;
+                order: -1;
+            }
+
+            .hero__image-wrapper {
+                max-width: 340px;
+            }
+
+            .hero__event-info {
+                justify-content: center;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 767px) {
+            .hero {
+                min-height: auto;
+            }
+
+            .hero__container {
+                padding: 90px 5vw 100px;
+                gap: 32px;
+            }
+
+            .hero__title {
+                font-size: clamp(2rem, 8vw, 2.6rem);
+                letter-spacing: -1px;
+            }
+
+            .hero__image-col {
+                order: -1;
+            }
+
+            .hero__image-wrapper {
+                max-width: 280px;
+            }
+
+            .hero__tickets {
+                padding: 20px 24px;
+            }
+
+            .tickets__current-price {
+                font-size: 34px;
+            }
+
+            .hero__event-info {
+                flex-direction: column;
+                gap: 12px;
+                align-items: center;
+            }
+
+            .mobile-cta-bar {
+                display: block;
+            }
+
+            .hero__cta-wrap {
+                display: none;
+            }
+        }
+
+        /* ══════════════════════════════════════════════
+           ANIMATED BEAM BORDER (for CTA alt usage)
+           ══════════════════════════════════════════════ */
+        @keyframes spin-beam {
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ══════════════════════════════════════════════
+         HERO SECTION
+         ══════════════════════════════════════════════ -->
+    <section class="hero" x-data="{ sold: 47, total: 50 }">
+
+        <!-- Particles Background -->
+        <div id="tsparticles"></div>
+
+        <!-- Grid Pattern -->
+        <div class="hero__grid"></div>
+
+        <!-- Radial Glows -->
+        <div class="hero__glow"></div>
+        <div class="hero__glow hero__glow--right"></div>
+
+        <!-- Clip Reveal Columns -->
+        <div class="hero__clip-columns" id="clip-grid"></div>
+
+        <!-- ── Main Container ── -->
+        <div class="hero__container">
+
+            <!-- LEFT COLUMN: Content -->
+            <div class="hero__content">
+
+                <!-- Badge -->
+                <div class="hero__badge" id="hero-badge">
+                    <span class="hero__badge-dot"></span>
+                    Workshop ao vivo · 29 de Março
+                </div>
+
+                <!-- H1 Title (Splitting.js) -->
+                <h1 class="hero__title">
+                    <span class="text-white" data-splitting>Criando Minha</span><br>
+                    <span class="text-gold" data-splitting>Consultoria</span><br>
+                    <span class="text-outline" data-splitting>Lucrativa</span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="hero__subtitle" id="hero-subtitle">
+                    Uma manhã de imersão prática para você estruturar sua consultoria empresarial com clareza, 
+                    método e posicionamento premium — mesmo que ainda esteja no mundo corporativo.
+                </p>
+
+                <!-- CTA Button -->
+                <div class="hero__cta-wrap" id="hero-cta">
+                    <a href="#garantir" class="hero__cta">
+                        <span>Garantir Meu Ingresso</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Tickets Progress Bar -->
+                <div class="hero__tickets" id="hero-tickets">
+                    <div class="tickets__header">
+                        <span class="tickets__label">
+                            <i class="fa-solid fa-fire"></i>
+                            Vagas quase esgotadas
+                        </span>
+                        <span class="tickets__count">
+                            <strong id="sold-count">0</strong> de 50 vendidos
+                        </span>
+                    </div>
+
+                    <div class="tickets__bar">
+                        <div class="tickets__bar-fill" id="progress-bar"></div>
+                    </div>
+
+                    <div class="tickets__pricing">
+                        <div>
+                            <span class="tickets__old-price">de R$697,00</span>
+                            <span class="tickets__label-price"> por apenas:</span>
+                        </div>
+                    </div>
+                    <div class="tickets__pricing" style="margin-top: -4px; margin-bottom: 8px;">
+                        <span class="tickets__current-price"><span>R$</span>49<span>,00</span></span>
+                    </div>
+
+                    <div class="tickets__urgency">
+                        <i class="fa-regular fa-clock"></i>
+                        Últimas 3 vagas pelo preço de lote atual
+                    </div>
+                </div>
+
+                <!-- Event Info -->
+                <div class="hero__event-info" id="hero-event-info">
+                    <div class="event-info__item">
+                        <i class="fa-regular fa-calendar"></i>
+                        Sábado, 29 de Março
+                    </div>
+                    <div class="event-info__item">
+                        <i class="fa-regular fa-clock"></i>
+                        Das 8:30h às 12:30h
+                    </div>
+                    <div class="event-info__item">
+                        <i class="fa-solid fa-globe"></i>
+                        Online e ao vivo
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Mentora Image -->
+            <div class="hero__image-col">
+                <div class="hero__image-wrapper" id="hero-image">
+                    <div class="hero__image-glow"></div>
+                    <div class="hero__image-frame">
+                        <div class="frame-corner frame-corner--tl"></div>
+                        <div class="frame-corner frame-corner--tr"></div>
+                        <div class="frame-corner frame-corner--bl"></div>
+                        <div class="frame-corner frame-corner--br"></div>
+                    </div>
+                    <img
+                        src="images/mentora.webp"
+                        alt="Juliana Paes Garcia — Mentora do Workshop Consultoria Lucrativa"
+                        class="hero__image"
+                        loading="eager"
+                    >
+                    <div class="hero__image-vignette"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile Sticky CTA -->
+    <div class="mobile-cta-bar">
+        <a href="#garantir" class="hero__cta">
+            <span>Garantir Meu Ingresso</span>
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         SCRIPTS
+         ══════════════════════════════════════════════ -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        /* ── 1. Lenis Smooth Scroll ── */
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smooth: true
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Sync Lenis with GSAP ScrollTrigger
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => lenis.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
+
+        /* ── 2. tsParticles ── */
+        tsParticles.load("tsparticles", {
+            fullScreen: false,
+            background: { color: "transparent" },
+            particles: {
+                number: { value: 40, density: { enable: true, area: 1200 } },
+                color: { value: ["#B3A275", "#ffffff"] },
+                shape: { type: "circle" },
+                opacity: { value: { min: 0.05, max: 0.15 }, animation: { enable: true, speed: 0.5, minimumValue: 0.03 } },
+                size: { value: { min: 1, max: 3 } },
+                move: { enable: true, speed: 0.3, direction: "none", outModes: "out" },
+                links: { enable: false }
+            },
+            detectRetina: true
+        });
+
+        /* ── 3. Clip Columns Reveal ── */
+        const clipGrid = document.getElementById('clip-grid');
+        for (let i = 0; i < 8; i++) {
+            const col = document.createElement('div');
+            col.className = 'clip-col';
+            clipGrid.appendChild(col);
+            setTimeout(() => col.classList.add('active'), 200 + i * 120);
+        }
+
+        /* ── 4. Splitting.js Init ── */
+        Splitting();
+
+        /* ── 5. GSAP Master Timeline ── */
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+        // Badge
+        tl.to('#hero-badge', {
+            opacity: 1, y: 0, duration: 0.7
+        }, 0.3);
+
+        // Title chars (Splitting.js)
+        tl.add(() => {
+            document.querySelectorAll('.hero__title [data-splitting]').forEach((el, groupIdx) => {
+                const chars = el.querySelectorAll('.char');
+                chars.forEach((char, i) => {
+                    setTimeout(() => {
+                        char.style.transitionDelay = `${i * 30}ms`;
+                    }, groupIdx * 200);
+                });
+                setTimeout(() => el.classList.add('splitting'), 100 + groupIdx * 200);
+            });
+        }, 0.5);
+
+        // Subtitle
+        tl.to('#hero-subtitle', {
+            opacity: 1, y: 0, duration: 0.8
+        }, 1.2);
+
+        // CTA
+        tl.to('#hero-cta', {
+            opacity: 1, y: 0, duration: 0.7
+        }, 1.5);
+
+        // Tickets section
+        tl.to('#hero-tickets', {
+            opacity: 1, y: 0, duration: 0.8
+        }, 1.8);
+
+        // Event info
+        tl.to('#hero-event-info', {
+            opacity: 1, y: 0, duration: 0.7
+        }, 2.1);
+
+        // Image
+        tl.to('#hero-image', {
+            opacity: 1, x: 0, duration: 1.2, ease: 'power2.out'
+        }, 0.8);
+
+        // Set initial states via GSAP
+        gsap.set('#hero-badge', { opacity: 0, y: 20 });
+        gsap.set('#hero-subtitle', { opacity: 0, y: 20 });
+        gsap.set('#hero-cta', { opacity: 0, y: 20 });
+        gsap.set('#hero-tickets', { opacity: 0, y: 30 });
+        gsap.set('#hero-event-info', { opacity: 0, y: 20 });
+        gsap.set('#hero-image', { opacity: 0, x: 60 });
+
+        /* ── 6. CountUp.js for Sold Count ── */
+        setTimeout(() => {
+            const CountUpModule = window.countUp || window.CountUp;
+            if (CountUpModule && CountUpModule.CountUp) {
+                const counter = new CountUpModule.CountUp('sold-count', 47, {
+                    startVal: 0,
+                    duration: 2.5,
+                    useEasing: true
+                });
+                if (!counter.error) counter.start();
+            } else {
+                // Fallback: just set the number
+                document.getElementById('sold-count').textContent = '47';
+            }
+
+            // Animate progress bar
+            document.getElementById('progress-bar').style.width = '94%';
+        }, 2200);
+
+        /* ── 7. Parallax on Image (ScrollTrigger) ── */
+        gsap.to('#hero-image', {
+            y: -40,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1.5
+            }
+        });
+    });
+    </script>
+
+</body>
+</html>
