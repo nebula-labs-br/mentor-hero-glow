@@ -3155,6 +3155,281 @@
 </script>
 
 <!-- ══════════════════════════════════════════════
+     DEPOIMENTOS SECTION
+     ══════════════════════════════════════════════ -->
+<style>
+    .depoimentos-section {
+        position: relative;
+        padding: 6rem 2rem;
+        background: var(--bg-dark);
+        overflow: hidden;
+    }
+    .depoimentos-section::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        opacity: 0.3;
+    }
+    .depoimentos-header {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 3.5rem;
+    }
+    .depoimentos-header__title {
+        font-family: var(--font-primary);
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        font-weight: 700;
+        color: #FFFFFF;
+        line-height: 1.3;
+        margin-bottom: 1rem;
+    }
+    .depoimentos-header__title .text-gold {
+        color: var(--accent-gold);
+    }
+    .depoimentos-header__line {
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent-gold), transparent);
+        margin: 1.5rem auto 0;
+        transform-origin: left;
+    }
+    .depoimentos-carousel {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    .depoimentos-track {
+        display: flex;
+        transition: transform 500ms cubic-bezier(0.25, 0.1, 0.25, 1);
+        will-change: transform;
+    }
+    .depoimento-slide {
+        flex: 0 0 33.333%;
+        padding: 0 12px;
+        transition: transform 300ms ease, opacity 300ms ease, filter 300ms ease;
+    }
+    .depoimento-card {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        cursor: grab;
+    }
+    .depoimento-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 16px;
+        padding: 1.5px;
+        background: linear-gradient(135deg, var(--accent-gold), rgba(179,162,117,0.2), var(--accent-gold));
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: 2;
+    }
+    .depoimento-card__inner {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        background: rgba(255,255,255,0.04);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+    @supports not (backdrop-filter: blur(8px)) {
+        .depoimento-card__inner { background: rgba(20,40,42,0.95); }
+    }
+    .depoimento-card__img {
+        width: 100%;
+        display: block;
+        object-fit: cover;
+        aspect-ratio: 3/4;
+    }
+    .depoimento-card__inner::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        height: 60px;
+        background: linear-gradient(to top, var(--bg-dark), transparent);
+        pointer-events: none;
+        z-index: 1;
+    }
+    .depoimento-slide.is-active {
+        transform: scale(1.05);
+        opacity: 1;
+        filter: brightness(1);
+        z-index: 3;
+    }
+    .depoimento-slide.is-active .depoimento-card {
+        box-shadow: 0 0 30px rgba(179,162,117,0.3);
+    }
+    .depoimento-slide:not(.is-active) {
+        transform: scale(0.95);
+        opacity: 0.75;
+        filter: brightness(0.85);
+        z-index: 1;
+    }
+    .depoimentos-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 1px solid rgba(179,162,117,0.3);
+        background: rgba(10,26,28,0.8);
+        color: var(--accent-gold);
+        font-size: 1.1rem;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 200ms, border-color 200ms, box-shadow 200ms;
+        backdrop-filter: blur(4px);
+    }
+    .depoimentos-nav:hover {
+        background: rgba(179,162,117,0.15);
+        border-color: var(--accent-gold);
+        box-shadow: 0 0 15px rgba(179,162,117,0.2);
+    }
+    .depoimentos-nav--prev { left: -8px; }
+    .depoimentos-nav--next { right: -8px; }
+    .depoimentos-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 2rem;
+    }
+    .depoimentos-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(179,162,117,0.25);
+        border: none;
+        cursor: pointer;
+        transition: background 300ms, transform 300ms, box-shadow 300ms;
+        padding: 0;
+    }
+    .depoimentos-dot.is-active {
+        background: var(--accent-gold);
+        transform: scale(1.3);
+        box-shadow: 0 0 8px rgba(179,162,117,0.4);
+    }
+    @media (max-width: 1023px) {
+        .depoimento-slide { flex: 0 0 50%; }
+        .depoimentos-nav--prev { left: 4px; }
+        .depoimentos-nav--next { right: 4px; }
+    }
+    @media (max-width: 767px) {
+        .depoimentos-section { padding: 4rem 1rem; }
+        .depoimento-slide { flex: 0 0 100%; padding: 0 6px; }
+        .depoimento-card__img { aspect-ratio: 4/5; }
+        .depoimentos-nav { width: 36px; height: 36px; font-size: 0.9rem; }
+        .depoimentos-nav--prev { left: 2px; }
+        .depoimentos-nav--next { right: 2px; }
+        .depoimento-slide.is-active,
+        .depoimento-slide:not(.is-active) {
+            transform: scale(1);
+            opacity: 1;
+            filter: none;
+        }
+    }
+</style>
+
+<section class="depoimentos-section" id="depoimentos-section">
+    <div class="depoimentos-header">
+        <h2 class="depoimentos-header__title" data-splitting>
+            Veja como está a vida dos <span class="text-gold">Mentorados</span> que aplicaram nossa metodologia:
+        </h2>
+        <div class="depoimentos-header__line" id="depoimentos-line"></div>
+    </div>
+    <div class="depoimentos-carousel" id="depoimentos-carousel">
+        <button class="depoimentos-nav depoimentos-nav--prev" id="dep-prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+        <button class="depoimentos-nav depoimentos-nav--next" id="dep-next" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
+        <div class="depoimentos-track" id="depoimentos-track">
+            <div class="depoimento-slide"><div class="depoimento-card"><div class="depoimento-card__inner"><img class="depoimento-card__img" src="images/depoimento-01.webp" alt="Depoimento — Missão dada, missão cumprida" loading="lazy" decoding="async" width="400" height="533"/></div></div></div>
+            <div class="depoimento-slide"><div class="depoimento-card"><div class="depoimento-card__inner"><img class="depoimento-card__img" src="images/depoimento-02.webp" alt="Depoimento — Fechei minha primeira cliente" loading="lazy" decoding="async" width="400" height="533"/></div></div></div>
+            <div class="depoimento-slide"><div class="depoimento-card"><div class="depoimento-card__inner"><img class="depoimento-card__img" src="images/depoimento-03.webp" alt="Depoimento — Pílulas de mentalidade" loading="lazy" decoding="async" width="400" height="533"/></div></div></div>
+            <div class="depoimento-slide"><div class="depoimento-card"><div class="depoimento-card__inner"><img class="depoimento-card__img" src="images/depoimento-04.webp" alt="Depoimento — Primeiro contrato de consultoria" loading="lazy" decoding="async" width="400" height="533"/></div></div></div>
+            <div class="depoimento-slide"><div class="depoimento-card"><div class="depoimento-card__inner"><img class="depoimento-card__img" src="images/depoimento-05.webp" alt="Depoimento — Passei dos 100k" loading="lazy" decoding="async" width="400" height="533"/></div></div></div>
+            <div class="depoimento-slide"><div class="depoimento-card"><div class="depoimento-card__inner"><img class="depoimento-card__img" src="images/depoimento-06.webp" alt="Depoimento — Mini vitórias internas" loading="lazy" decoding="async" width="400" height="533"/></div></div></div>
+            <div class="depoimento-slide"><div class="depoimento-card"><div class="depoimento-card__inner"><img class="depoimento-card__img" src="images/depoimento-07.webp" alt="Depoimento — Primeira sessão e primeira cliente" loading="lazy" decoding="async" width="400" height="533"/></div></div></div>
+        </div>
+    </div>
+    <div class="depoimentos-dots" id="depoimentos-dots"></div>
+</section>
+
+<script>
+(function() {
+    const track = document.getElementById('depoimentos-track');
+    const slides = track.querySelectorAll('.depoimento-slide');
+    const prevBtn = document.getElementById('dep-prev');
+    const nextBtn = document.getElementById('dep-next');
+    const dotsContainer = document.getElementById('depoimentos-dots');
+    const total = slides.length;
+    let current = 0, perView = 3, autoplayId = null, isDragging = false, startX = 0, dragDelta = 0;
+
+    function getPerView() { return window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3; }
+    function maxIdx() { return Math.max(0, total - perView); }
+    function buildDots() {
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i <= maxIdx(); i++) {
+            const d = document.createElement('button');
+            d.className = 'depoimentos-dot' + (i === current ? ' is-active' : '');
+            d.setAttribute('aria-label', 'Slide ' + (i + 1));
+            d.addEventListener('click', () => goTo(i));
+            dotsContainer.appendChild(d);
+        }
+    }
+    function updateClasses() {
+        slides.forEach((s, i) => {
+            s.classList.remove('is-active');
+            if (perView >= 3 && i === current + Math.floor(perView / 2)) s.classList.add('is-active');
+            else if (perView === 1 && i === current) s.classList.add('is-active');
+        });
+        dotsContainer.querySelectorAll('.depoimentos-dot').forEach((d, i) => d.classList.toggle('is-active', i === current));
+    }
+    function goTo(i) {
+        current = Math.max(0, Math.min(i, maxIdx()));
+        track.style.transform = 'translateX(-' + (current * (100 / perView)) + '%)';
+        updateClasses();
+    }
+    function next() { goTo(current >= maxIdx() ? 0 : current + 1); }
+    function prev() { goTo(current <= 0 ? maxIdx() : current - 1); }
+    prevBtn.addEventListener('click', () => { prev(); resetAP(); });
+    nextBtn.addEventListener('click', () => { next(); resetAP(); });
+    track.addEventListener('touchstart', e => { isDragging = true; startX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchmove', e => { if (isDragging) dragDelta = e.touches[0].clientX - startX; }, { passive: true });
+    track.addEventListener('touchend', () => { if (Math.abs(dragDelta) > 50) dragDelta < 0 ? next() : prev(); isDragging = false; dragDelta = 0; resetAP(); });
+    function startAP() { autoplayId = setInterval(next, 4000); }
+    function resetAP() { clearInterval(autoplayId); startAP(); }
+    function init() { perView = getPerView(); if (current > maxIdx()) current = maxIdx(); buildDots(); goTo(current); resetAP(); }
+    window.addEventListener('resize', init);
+    init();
+
+    // GSAP
+    if (typeof Splitting !== 'undefined') Splitting({ target: '.depoimentos-header__title', by: 'words' });
+    gsap.registerPlugin(ScrollTrigger);
+    const depWords = document.querySelectorAll('.depoimentos-header__title .word');
+    if (depWords.length) {
+        gsap.set(depWords, { opacity: 0, y: 15 });
+        ScrollTrigger.create({
+            trigger: '#depoimentos-section', start: 'top 80%', once: true,
+            onEnter: () => {
+                gsap.to(depWords, { opacity: 1, y: 0, stagger: 0.08, duration: 0.5, ease: 'power2.out' });
+                gsap.fromTo('#depoimentos-line', { scaleX: 0 }, { scaleX: 1, duration: 0.6, delay: 0.3, ease: 'power2.out' });
+                gsap.fromTo('.depoimento-slide', { opacity: 0, y: 30 },
+                    { opacity: (i, el) => el.classList.contains('is-active') ? 1 : 0.75, y: 0, stagger: 0.1, duration: 0.6, delay: 0.5, ease: 'power2.out', onComplete: updateClasses });
+            }
+        });
+    }
+})();
+</script>
+
+<!-- ══════════════════════════════════════════════
      PRICING SECTION — SEXTA DOBRA
      ══════════════════════════════════════════════ -->
 <section class="pricing-section" id="pricing-section">
