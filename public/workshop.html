@@ -1479,6 +1479,124 @@
     </div>
 </section>
 
+<!-- ══════════════════════════════════════════════
+     DIVIDER 3
+     ══════════════════════════════════════════════ -->
+<div class="section-divider pq-divider" id="section-divider-3"></div>
+
+<!-- ══════════════════════════════════════════════
+     FOURTH FOLD — PARA QUEM É ESTE WORKSHOP
+     ══════════════════════════════════════════════ -->
+<style>
+    /* Fourth fold — inherits all .wa-* styles, only overrides needed */
+    .para-quem-section {
+        position: relative;
+        padding: 0 5vw 100px;
+    }
+
+    .pq-divider {
+        width: 60%;
+        max-width: 600px;
+        height: 1px;
+        margin: 2.5rem auto 3rem;
+        background: linear-gradient(90deg, transparent, rgba(179, 162, 117, 0.35), transparent);
+        transform: scaleX(0);
+        will-change: transform;
+    }
+
+    /* Reverse grid: text left, image right */
+    .pq-card-inner {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Image — NO float animation, static and solid */
+    .pq-image-wrap img {
+        animation: none !important;
+        transform: rotate(0deg) !important;
+        max-width: 420px;
+    }
+
+    /* Responsive — match third fold */
+    @media (max-width: 1023px) {
+        .pq-card-inner {
+            grid-template-columns: 1fr;
+        }
+
+        .pq-image-col {
+            order: -1;
+            text-align: center;
+        }
+
+        .pq-image-wrap img {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .para-quem-section {
+            padding: 0 6vw 72px;
+        }
+
+        .pq-image-wrap img {
+            max-width: 100%;
+            max-height: 320px;
+            object-fit: contain;
+        }
+    }
+</style>
+
+<section class="para-quem-section" id="para-quem">
+    <div class="wa-inner">
+
+        <!-- Main Card — same family as third fold -->
+        <div class="wa-card-outer pq-card-outer" id="pq-card">
+            <div class="wa-card-inner pq-card-inner">
+
+                <!-- Left — Text column -->
+                <div class="wa-list-col pq-list-col">
+                    <h3 class="wa-list-title pq-list-title" id="pq-list-title">
+                        <span data-splitting>PARA QUEM É ESTE WORKSHOP?</span>
+                    </h3>
+
+                    <div class="wa-item pq-item" data-pq-item>
+                        <div class="wa-check">
+                            <svg viewBox="0 0 16 16"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+                        </div>
+                        <div class="wa-item-text"><strong>Executivos e ex-executivos</strong> que acumularam décadas de resultado mas ainda não traduziram isso em um negócio próprio de consultoria.</div>
+                    </div>
+
+                    <div class="wa-item pq-item" data-pq-item>
+                        <div class="wa-check">
+                            <svg viewBox="0 0 16 16"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+                        </div>
+                        <div class="wa-item-text"><strong>Profissionais com bagagem comprovada</strong> que dominam a entrega mas ainda não dominam o modelo de negócio que os faz cobrar o que merecem.</div>
+                    </div>
+
+                    <div class="wa-item pq-item" data-pq-item>
+                        <div class="wa-check">
+                            <svg viewBox="0 0 16 16"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg>
+                        </div>
+                        <div class="wa-item-text"><strong>Consultores em operação</strong> que faturam, mas de forma inconsistente — e sabem que falta método, posicionamento e estrutura para o próximo nível.</div>
+                    </div>
+
+                </div>
+
+                <!-- Right — Caderno Image -->
+                <div class="wa-image-col pq-image-col" id="pq-image">
+                    <div class="wa-image-wrap pq-image-wrap">
+                        <div class="wa-image-glow"></div>
+                        <img src="images/caderno.webp" alt="Caderno Consultor Estratégico — método e planejamento profissional" />
+                        <div class="wa-image-vignette"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
 <!-- Mobile Sticky CTA -->
 <div class="mobile-sticky-cta" id="mobile-cta">
     <a href="#" class="btn-cta">
