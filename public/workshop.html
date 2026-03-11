@@ -1779,7 +1779,7 @@
         scrollTrigger: {
             trigger: "#section-divider",
             start: "top 90%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
         }
     });
 
@@ -1794,7 +1794,7 @@
         scrollTrigger: {
             trigger: "#pv-title",
             start: "top 80%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
         }
     });
 
@@ -1809,7 +1809,7 @@
             scrollTrigger: {
                 trigger: card,
                 start: "top 85%",
-                toggleActions: "play none none reverse",
+                toggleActions: "play none none none",
             },
             delay: i * 0.15,
         });
@@ -1824,7 +1824,7 @@
                 scrollTrigger: {
                     trigger: card,
                     start: "top 85%",
-                    toggleActions: "play none none reverse",
+                    toggleActions: "play none none none",
                 },
                 delay: i * 0.15,
             });
@@ -1840,7 +1840,7 @@
                 scrollTrigger: {
                     trigger: card,
                     start: "top 80%",
-                    toggleActions: "play none none reverse",
+                    toggleActions: "play none none none",
                 },
                 delay: i * 0.15 + 0.3,
             });
@@ -1859,35 +1859,12 @@
         scrollTrigger: {
             trigger: "#pv-cta",
             start: "top 90%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
         }
     });
     gsap.set("#pv-cta", { opacity: 0, scale: 0.9 });
 
-    // Exit parallax
-    gsap.to("#pv-title", {
-        y: -20,
-        opacity: 0.3,
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".para-voce",
-            start: "bottom 60%",
-            end: "bottom top",
-            scrub: 1,
-        }
-    });
 
-    gsap.to(".pv-card", {
-        y: -15,
-        opacity: 0.6,
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".para-voce",
-            start: "bottom 50%",
-            end: "bottom top",
-            scrub: 1,
-        }
-    });
 
     /* ══════════════════════════════════════════════
        THIRD FOLD — GSAP ANIMATIONS
@@ -1900,7 +1877,7 @@
         scrollTrigger: {
             trigger: "#section-divider-2",
             start: "top 90%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
         }
     });
 
@@ -1912,7 +1889,7 @@
         scrollTrigger: {
             trigger: "#workshop-about",
             start: "top 80%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
         }
     });
 
@@ -1927,7 +1904,7 @@
         scrollTrigger: {
             trigger: "#wa-title",
             start: "top 80%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
         }
     });
 
@@ -1940,7 +1917,7 @@
         scrollTrigger: {
             trigger: "#wa-subtitle",
             start: "top 85%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
         }
     });
     gsap.set("#wa-subtitle", { y: 20 });
@@ -1954,7 +1931,7 @@
         scrollTrigger: {
             trigger: "#wa-card",
             start: "top 82%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
         }
     });
     gsap.set("#wa-card", { scale: 0.97 });
@@ -1968,7 +1945,7 @@
         scrollTrigger: {
             trigger: "#wa-card",
             start: "top 78%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
         }
     });
     gsap.set("#wa-image", { x: -30 });
@@ -1984,7 +1961,7 @@
         scrollTrigger: {
             trigger: "#wa-list-title",
             start: "top 85%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
         }
     });
 
@@ -1999,7 +1976,7 @@
             scrollTrigger: {
                 trigger: item,
                 start: "top 90%",
-                toggleActions: "play none none reverse",
+                toggleActions: "play none none none",
             },
             delay: i * 0.12,
         });
@@ -2014,7 +1991,7 @@
                 scrollTrigger: {
                     trigger: item,
                     start: "top 90%",
-                    toggleActions: "play none none reverse",
+                    toggleActions: "play none none none",
                 },
                 delay: i * 0.12 + 0.1,
             });
@@ -2022,18 +1999,8 @@
     });
     gsap.set("[data-wa-item]", { opacity: 0, x: 20 });
 
-    // Exit parallax for third fold
-    gsap.to("#wa-card", {
-        y: -20,
-        opacity: 0.7,
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".workshop-about",
-            start: "bottom 50%",
-            end: "bottom top",
-            scrub: 1,
-        }
-    });
+
+
 
     // Image parallax on scroll
     gsap.to("#wa-image", {
@@ -2058,7 +2025,7 @@
         scrollTrigger: {
             trigger: "#section-divider-3",
             start: "top 90%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
         }
     });
 
@@ -2071,7 +2038,7 @@
         scrollTrigger: {
             trigger: "#pq-card",
             start: "top 82%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
         }
     });
     gsap.set("#pq-card", { scale: 0.97 });
@@ -2090,7 +2057,7 @@
         scrollTrigger: {
             trigger: "#pq-list-title",
             start: "top 85%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
         }
     });
 
@@ -2103,7 +2070,7 @@
         scrollTrigger: {
             trigger: "#pq-card",
             start: "top 78%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
         }
     });
     gsap.set("#pq-image", { x: 30 });
@@ -2119,7 +2086,7 @@
             scrollTrigger: {
                 trigger: item,
                 start: "top 90%",
-                toggleActions: "play none none reverse",
+                toggleActions: "play none none none",
             },
             delay: i * 0.13,
         });
@@ -2133,7 +2100,7 @@
                 scrollTrigger: {
                     trigger: item,
                     start: "top 90%",
-                    toggleActions: "play none none reverse",
+                    toggleActions: "play none none none",
                 },
                 delay: i * 0.13 + 0.1,
             });
@@ -2153,18 +2120,8 @@
         }
     });
 
-    // Exit parallax for fourth fold
-    gsap.to("#pq-card", {
-        y: -20,
-        opacity: 0.7,
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".para-quem-section",
-            start: "bottom 50%",
-            end: "bottom top",
-            scrub: 1,
-        }
-    });
+
+
 
 </script>
 
