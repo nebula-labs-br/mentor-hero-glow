@@ -1640,22 +1640,9 @@
         z-index: 0;
     }
 
-    /* Background watermark word */
+    /* Background watermark word — hidden */
     .mentora-watermark {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(-8deg);
-        font-family: var(--font-primary);
-        font-size: clamp(6rem, 14vw, 14rem);
-        font-weight: 900;
-        color: rgba(179, 162, 117, 0.03);
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        white-space: nowrap;
-        pointer-events: none;
-        z-index: 0;
-        user-select: none;
+        display: none;
     }
 
     .mentora-inner {
