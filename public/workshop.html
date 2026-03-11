@@ -1999,18 +1999,8 @@
     });
     gsap.set("[data-wa-item]", { opacity: 0, x: 20 });
 
-    // Exit parallax for third fold
-    gsap.to("#wa-card", {
-        y: -20,
-        opacity: 0.7,
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".workshop-about",
-            start: "bottom 50%",
-            end: "bottom top",
-            scrub: 1,
-        }
-    });
+
+
 
     // Image parallax on scroll
     gsap.to("#wa-image", {
