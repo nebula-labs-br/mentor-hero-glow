@@ -2046,8 +2046,127 @@
             scrub: 1,
         }
     });
+    /* ══════════════════════════════════════════════
+       FOURTH FOLD — GSAP ANIMATIONS
+       ══════════════════════════════════════════════ */
 
-</script>
+    // Divider 3 — scaleX reveal
+    gsap.to("#section-divider-3", {
+        scaleX: 1,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#section-divider-3",
+            start: "top 90%",
+            toggleActions: "play none none reverse",
+        }
+    });
+
+    // Card materializes
+    gsap.to("#pq-card", {
+        opacity: 1,
+        scale: 1,
+        duration: 0.5,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#pq-card",
+            start: "top 82%",
+            toggleActions: "play none none reverse",
+        }
+    });
+    gsap.set("#pq-card", { scale: 0.97 });
+
+    // List title — Splitting.js chars
+    if (typeof Splitting !== 'undefined') {
+        Splitting({ target: '#pq-list-title [data-splitting]' });
+    }
+    const pqListChars = document.querySelectorAll("#pq-list-title .char");
+    gsap.to(pqListChars, {
+        opacity: 1,
+        y: 0,
+        duration: 0.4,
+        stagger: 0.07,
+        ease: "power3.out",
+        scrollTrigger: {
+            trigger: "#pq-list-title",
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+        }
+    });
+
+    // Image slides in from the right
+    gsap.to("#pq-image", {
+        opacity: 1,
+        x: 0,
+        duration: 0.7,
+        ease: "power2.out",
+        scrollTrigger: {
+            trigger: "#pq-card",
+            start: "top 78%",
+            toggleActions: "play none none reverse",
+        }
+    });
+    gsap.set("#pq-image", { x: 30 });
+
+    // List items stagger
+    const pqItems = document.querySelectorAll("[data-pq-item]");
+    pqItems.forEach((item, i) => {
+        gsap.to(item, {
+            opacity: 1,
+            x: 0,
+            duration: 0.5,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: item,
+                start: "top 90%",
+                toggleActions: "play none none reverse",
+            },
+            delay: i * 0.13,
+        });
+
+        const check = item.querySelector('.wa-check');
+        if (check) {
+            gsap.from(check, {
+                scale: 0,
+                duration: 0.5,
+                ease: "elastic.out(1, 0.5)",
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 90%",
+                    toggleActions: "play none none reverse",
+                },
+                delay: i * 0.13 + 0.1,
+            });
+        }
+    });
+    gsap.set("[data-pq-item]", { opacity: 0, x: 20 });
+
+    // Parallax on caderno image (subtle translateY, no float)
+    gsap.to("#pq-image", {
+        y: -25,
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".para-quem-section",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+        }
+    });
+
+    // Exit parallax for fourth fold
+    gsap.to("#pq-card", {
+        y: -20,
+        opacity: 0.7,
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".para-quem-section",
+            start: "bottom 50%",
+            end: "bottom top",
+            scrub: 1,
+        }
+    });
+
+
 
 </body>
 </html>
