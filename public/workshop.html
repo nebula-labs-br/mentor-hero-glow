@@ -1864,30 +1864,7 @@
     });
     gsap.set("#pv-cta", { opacity: 0, scale: 0.9 });
 
-    // Exit parallax
-    gsap.to("#pv-title", {
-        y: -20,
-        opacity: 0.3,
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".para-voce",
-            start: "bottom 60%",
-            end: "bottom top",
-            scrub: 1,
-        }
-    });
 
-    gsap.to(".pv-card", {
-        y: -15,
-        opacity: 0.6,
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".para-voce",
-            start: "bottom 50%",
-            end: "bottom top",
-            scrub: 1,
-        }
-    });
 
     /* ══════════════════════════════════════════════
        THIRD FOLD — GSAP ANIMATIONS
