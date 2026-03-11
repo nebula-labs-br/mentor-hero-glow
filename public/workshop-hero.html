@@ -952,12 +952,18 @@
 
         /* ── 6. CountUp.js for Sold Count ── */
         setTimeout(() => {
-            const countUp = new countUp.CountUp('sold-count', 47, {
-                startVal: 0,
-                duration: 2.5,
-                useEasing: true
-            });
-            if (!countUp.error) countUp.start();
+            const CountUpModule = window.countUp || window.CountUp;
+            if (CountUpModule && CountUpModule.CountUp) {
+                const counter = new CountUpModule.CountUp('sold-count', 47, {
+                    startVal: 0,
+                    duration: 2.5,
+                    useEasing: true
+                });
+                if (!counter.error) counter.start();
+            } else {
+                // Fallback: just set the number
+                document.getElementById('sold-count').textContent = '47';
+            }
 
             // Animate progress bar
             document.getElementById('progress-bar').style.width = '94%';
