@@ -3636,5 +3636,482 @@
 })();
 </script>
 
+<!-- ══════════════════════════════════════════════
+     DOBRA FAQ
+     ══════════════════════════════════════════════ -->
+<style>
+    .faq-section {
+        position: relative;
+        padding: 6rem 2rem;
+        background: var(--bg-dark);
+        overflow: hidden;
+    }
+    .faq-section::before {
+        content: '';
+        position: absolute;
+        top: -200px;
+        left: -200px;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+        opacity: 0.04;
+        pointer-events: none;
+    }
+    .faq-section::after {
+        content: '';
+        position: absolute;
+        bottom: -200px;
+        right: -200px;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: radial-gradient(circle, var(--accent-glow-green) 0%, transparent 70%);
+        opacity: 0.04;
+        pointer-events: none;
+    }
+    .faq-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        position: relative;
+        z-index: 1;
+    }
+    .faq-header__title {
+        font-family: var(--font-primary);
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        font-weight: 800;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.9);
+        margin: 0 0 1.5rem;
+    }
+    .faq-header__title .word:last-child {
+        color: var(--accent-gold);
+    }
+    .faq-header__line {
+        width: 80px;
+        height: 2px;
+        margin: 0 auto;
+        background: linear-gradient(90deg, var(--accent-gold), rgba(179,162,117,0.3));
+        transform: scaleX(0);
+        transform-origin: center;
+    }
+
+    /* Accordion container */
+    .faq-container {
+        max-width: 780px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Accordion item */
+    .faq-item {
+        position: relative;
+        margin-bottom: 0.75rem;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    .faq-item::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 12px;
+        padding: 1px;
+        background: linear-gradient(135deg, var(--accent-gold), rgba(179,162,117,0.2), var(--accent-gold));
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease;
+    }
+    .faq-item.is-visible::before {
+        transform: scaleX(1);
+    }
+    .faq-item--guarantee::before {
+        background: linear-gradient(135deg, var(--accent-green), rgba(22,228,99,0.2), var(--accent-green));
+    }
+    .faq-item__inner {
+        background: rgba(255,255,255,0.03);
+        border-radius: 12px;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+    }
+
+    /* Header (trigger) */
+    .faq-trigger {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        padding: 1.25rem 1.5rem;
+        cursor: pointer;
+        border: none;
+        background: none;
+        text-align: left;
+        transition: background 200ms ease;
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .faq-trigger:hover,
+    .faq-trigger:focus-visible {
+        background: rgba(255,255,255,0.04);
+    }
+    .faq-trigger:hover .faq-num,
+    .faq-trigger:focus-visible .faq-num {
+        opacity: 1;
+    }
+
+    .faq-num {
+        font-family: var(--font-primary);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        color: var(--accent-gold);
+        opacity: 0.6;
+        transition: opacity 200ms ease;
+        flex-shrink: 0;
+        min-width: 1.8rem;
+    }
+    .faq-item--guarantee .faq-num { color: var(--accent-green); }
+
+    .faq-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.15rem 0.5rem;
+        border-radius: 999px;
+        background: rgba(22,228,99,0.1);
+        border: 1px solid rgba(22,228,99,0.4);
+        color: var(--accent-green);
+        font-family: var(--font-primary);
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-right: 0.25rem;
+        flex-shrink: 0;
+    }
+
+    .faq-question {
+        flex: 1;
+        font-family: var(--font-primary);
+        font-size: clamp(0.85rem, 1.8vw, 1rem);
+        font-weight: 600;
+        color: rgba(255,255,255,0.88);
+        line-height: 1.5;
+    }
+
+    /* Toggle icon (+ / ×) */
+    .faq-toggle {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+    }
+    .faq-toggle::before,
+    .faq-toggle::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background: var(--accent-gold);
+        border-radius: 2px;
+        transition: transform 300ms ease;
+    }
+    .faq-toggle::before {
+        width: 14px;
+        height: 2px;
+        transform: translate(-50%, -50%);
+    }
+    .faq-toggle::after {
+        width: 2px;
+        height: 14px;
+        transform: translate(-50%, -50%);
+    }
+    .faq-item.is-open .faq-toggle::before {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+    .faq-item.is-open .faq-toggle::after {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+    .faq-item--guarantee .faq-toggle::before,
+    .faq-item--guarantee .faq-toggle::after {
+        background: var(--accent-green);
+    }
+
+    /* Body (answer) */
+    .faq-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .faq-body__divider {
+        height: 1px;
+        margin: 0 1.5rem;
+        background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        opacity: 0;
+        transition: opacity 300ms ease;
+    }
+    .faq-item--guarantee .faq-body__divider {
+        background: linear-gradient(90deg, transparent, var(--accent-green), transparent);
+    }
+    .faq-item.is-open .faq-body__divider {
+        opacity: 0.2;
+    }
+    .faq-body__content {
+        padding: 0.75rem 1.5rem 1.25rem 4rem;
+        color: rgba(255,255,255,0.6);
+        font-family: var(--font-secondary);
+        font-size: 0.92rem;
+        line-height: 1.75;
+    }
+    .faq-body__content p {
+        margin: 0 0 0.75rem;
+    }
+    .faq-body__content p:last-child {
+        margin-bottom: 0;
+    }
+    .faq-highlight {
+        color: var(--accent-gold);
+        font-weight: 700;
+    }
+    .faq-item--guarantee .faq-highlight {
+        color: var(--accent-green);
+    }
+
+    /* Guarantee item hover glow */
+    .faq-item--guarantee:hover .faq-item__inner {
+        box-shadow: 0 0 30px rgba(22,228,99,0.06);
+    }
+
+    /* CTA below FAQ */
+    .faq-cta-wrap {
+        text-align: center;
+        margin-top: 3rem;
+        position: relative;
+        z-index: 1;
+    }
+    .faq-cta-wrap .pricing-cta {
+        display: inline-flex;
+        max-width: 380px;
+        width: 100%;
+    }
+    .faq-cta-subtext {
+        margin-top: 1rem;
+        font-family: var(--font-secondary);
+        font-size: 0.8rem;
+        color: rgba(255,255,255,0.4);
+        letter-spacing: 0.03em;
+    }
+
+    /* Responsiveness */
+    @media (max-width: 1023px) {
+        .faq-container { max-width: 100%; padding: 0; }
+        .faq-section { padding: 5rem 1.5rem; }
+    }
+    @media (max-width: 767px) {
+        .faq-section { padding: 4rem 1rem; }
+        .faq-num { font-size: 0.65rem; min-width: 1.4rem; }
+        .faq-body__content { padding: 0.75rem 1rem 1rem 1rem; }
+        .faq-trigger { padding: 1rem 1rem; gap: 0.75rem; }
+        .faq-badge { font-size: 0.55rem; }
+    }
+</style>
+
+<section class="faq-section" id="faq">
+    <div class="faq-header">
+        <h2 class="faq-header__title" data-splitting>PERGUNTAS FREQUENTES</h2>
+        <div class="faq-header__line" id="faq-line"></div>
+    </div>
+
+    <div class="faq-container" id="faq-container">
+
+        <!-- P1 -->
+        <div class="faq-item is-open is-visible" data-faq>
+            <div class="faq-item__inner">
+                <div class="faq-trigger" role="button" tabindex="0" aria-expanded="true" aria-controls="faq-body-1">
+                    <span class="faq-num">01</span>
+                    <span class="faq-question">Para quem é este workshop?</span>
+                    <span class="faq-toggle"></span>
+                </div>
+                <div class="faq-body" id="faq-body-1" style="max-height:500px">
+                    <div class="faq-body__divider"></div>
+                    <div class="faq-body__content">
+                        <p>Este workshop foi criado para profissionais experientes — executivos, gestores, especialistas e consultores — que sentem que já têm bagagem suficiente para construir uma atuação mais autoral no mercado, mas ainda não estruturaram um caminho claro para isso.</p>
+                        <p>Durante o encontro, você vai entender como transformar sua experiência acumulada em posicionamento, autoridade e um modelo de atuação profissional mais independente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- P2 -->
+        <div class="faq-item" data-faq>
+            <div class="faq-item__inner">
+                <div class="faq-trigger" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-body-2">
+                    <span class="faq-num">02</span>
+                    <span class="faq-question">Eu preciso já ser consultor para participar?</span>
+                    <span class="faq-toggle"></span>
+                </div>
+                <div class="faq-body" id="faq-body-2">
+                    <div class="faq-body__divider"></div>
+                    <div class="faq-body__content">
+                        <p><span class="faq-highlight">Não.</span></p>
+                        <p>O workshop foi pensado justamente para quem ainda não estruturou uma consultoria, mas percebe que sua experiência profissional pode ser transformada em uma atuação própria no mercado.</p>
+                        <p>Você vai entender quais são os pilares que sustentam uma transição sólida — desde posicionamento até construção de autoridade.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- P3 -->
+        <div class="faq-item" data-faq>
+            <div class="faq-item__inner">
+                <div class="faq-trigger" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-body-3">
+                    <span class="faq-num">03</span>
+                    <span class="faq-question">Eu preciso aparecer muito, gravar vídeos ou me expor para dar certo?</span>
+                    <span class="faq-toggle"></span>
+                </div>
+                <div class="faq-body" id="faq-body-3">
+                    <div class="faq-body__divider"></div>
+                    <div class="faq-body__content">
+                        <p><span class="faq-highlight">Não.</span></p>
+                        <p>A proposta não depende de exposição performática ou de se tornar um "criador de conteúdo".</p>
+                        <p>O foco é construir autoridade reconhecida com clareza de posicionamento, sinais de instituição e difusão coerente, para que você seja percebido como referência no seu campo — e não como alguém apenas "se promovendo".</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- P4 -->
+        <div class="faq-item" data-faq>
+            <div class="faq-item__inner">
+                <div class="faq-trigger" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-body-4">
+                    <span class="faq-num">04</span>
+                    <span class="faq-question">Quanto tempo dura o workshop?</span>
+                    <span class="faq-toggle"></span>
+                </div>
+                <div class="faq-body" id="faq-body-4">
+                    <div class="faq-body__divider"></div>
+                    <div class="faq-body__content">
+                        <p>O workshop é um encontro online ao vivo, com duração aproximada de 2 horas.</p>
+                        <p>Durante esse período, você terá acesso a uma visão estruturada sobre como profissionais experientes podem reposicionar sua carreira e construir uma atuação independente baseada em conhecimento, experiência e reputação.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- P5 -->
+        <div class="faq-item" data-faq>
+            <div class="faq-item__inner">
+                <div class="faq-trigger" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-body-5">
+                    <span class="faq-num">05</span>
+                    <span class="faq-question">Existe alguma oferta ao final do workshop?</span>
+                    <span class="faq-toggle"></span>
+                </div>
+                <div class="faq-body" id="faq-body-5">
+                    <div class="faq-body__divider"></div>
+                    <div class="faq-body__content">
+                        <p><span class="faq-highlight">Sim.</span></p>
+                        <p>Ao final do encontro, será apresentada a possibilidade de participar de um programa mais aprofundado para quem deseja estruturar de forma completa sua atuação como consultor ou especialista independente.</p>
+                        <p>A participação nessa etapa é totalmente opcional.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- P6 — Garantia -->
+        <div class="faq-item faq-item--guarantee" data-faq>
+            <div class="faq-item__inner">
+                <div class="faq-trigger" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-body-6">
+                    <span class="faq-badge">GARANTIA</span>
+                    <span class="faq-num">06</span>
+                    <span class="faq-question">E se eu me inscrever e mudar de ideia? Existe garantia?</span>
+                    <span class="faq-toggle"></span>
+                </div>
+                <div class="faq-body" id="faq-body-6">
+                    <div class="faq-body__divider"></div>
+                    <div class="faq-body__content">
+                        <p><span class="faq-highlight">Sim.</span></p>
+                        <p>De acordo com o Código de Defesa do Consumidor (art. 49), compras realizadas pela internet possuem direito de arrependimento em até 7 dias.</p>
+                        <p>Caso você solicite dentro desse prazo, o valor pago é devolvido integralmente, sem qualquer burocracia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="faq-cta-wrap">
+        <a href="#" class="pricing-cta pulse">GARANTIR MEU INGRESSO <i class="fa-solid fa-bolt"></i></a>
+        <p class="faq-cta-subtext">Sábado, 28 de Março · Das 8h30 às 12h30 · Online e ao vivo</p>
+    </div>
+</section>
+
+<script>
+(function(){
+    /* ── FAQ Accordion ── */
+    const items = document.querySelectorAll('[data-faq]');
+    function openItem(item) {
+        const body = item.querySelector('.faq-body');
+        const trigger = item.querySelector('.faq-trigger');
+        item.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+        body.style.maxHeight = body.scrollHeight + 'px';
+    }
+    function closeItem(item) {
+        const body = item.querySelector('.faq-body');
+        const trigger = item.querySelector('.faq-trigger');
+        item.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        body.style.maxHeight = '0';
+    }
+    function toggle(item) {
+        const isOpen = item.classList.contains('is-open');
+        items.forEach(i => { if (i !== item) closeItem(i); });
+        isOpen ? closeItem(item) : openItem(item);
+    }
+    items.forEach(item => {
+        const trigger = item.querySelector('.faq-trigger');
+        trigger.addEventListener('click', () => toggle(item));
+        trigger.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(item); }
+        });
+    });
+    // Ensure first item is properly open
+    const first = items[0];
+    if (first) { openItem(first); }
+
+    /* ── GSAP Animations ── */
+    if (typeof Splitting !== 'undefined') Splitting({ target: '.faq-header__title', by: 'words' });
+    gsap.registerPlugin(ScrollTrigger);
+
+    const faqWords = document.querySelectorAll('.faq-header__title .word');
+    if (faqWords.length) {
+        gsap.set(faqWords, { opacity: 0, y: 40 });
+        gsap.set('.faq-item', { opacity: 0, y: 20 });
+    }
+
+    ScrollTrigger.create({
+        trigger: '#faq', start: 'top 80%', once: true,
+        onEnter: () => {
+            gsap.to(faqWords, { opacity: 1, y: 0, stagger: 0.1, duration: 0.5, ease: 'power2.out' });
+            gsap.to('#faq-line', { scaleX: 1, duration: 0.6, delay: 0.3, ease: 'power2.out' });
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach((item, i) => {
+                gsap.to(item, {
+                    opacity: 1, y: 0, duration: 0.5,
+                    delay: 0.5 + i * 0.1,
+                    ease: 'power2.out',
+                    onStart: () => item.classList.add('is-visible')
+                });
+            });
+        }
+    });
+})();
+</script>
+
 </body>
 </html>
