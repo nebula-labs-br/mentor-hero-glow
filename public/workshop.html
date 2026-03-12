@@ -4,6 +4,19 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 
+    <!-- Preconnect & DNS Prefetch (FIRST for fastest font/CDN resolution) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net"/>
+    <link rel="dns-prefetch" href="https://unpkg.com"/>
+
+    <!-- Preload hero image (LCP) -->
+    <link rel="preload" as="image" href="images/mentora.webp" type="image/webp"/>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+
     <!-- SEO Primary -->
     <title>Workshop Criando Minha Consultoria Lucrativa | Devolvi Meu Crachá — R$49</title>
     <meta name="description" content="Workshop online e ao vivo: aprenda a criar sua consultoria lucrativa com método validado por centenas de consultores. Sábado, 28 de Março, das 8h30 às 12h30. De R$697 por apenas R$49. Garantia de 7 dias."/>
@@ -120,34 +133,26 @@
     }
     </script>
 
-    <!-- Google Fonts (Montserrat + Inter from design_system) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-
-    <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <!-- GSAP + ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <!-- Splitting.js -->
     <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css"/>
     <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting-cells.css"/>
-    <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+    <script defer src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
 
     <!-- CountUp.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.8.0/countUp.umd.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.8.0/countUp.umd.min.js"></script>
 
     <!-- Lenis Smooth Scroll -->
-    <script src="https://unpkg.com/lenis@1.1.1/dist/lenis.min.js"></script>
+    <script defer src="https://unpkg.com/lenis@1.1.1/dist/lenis.min.js"></script>
 
     <!-- tsParticles -->
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.12.0/tsparticles.slim.bundle.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.12.0/tsparticles.slim.bundle.min.js"></script>
 
     <style>
         /* ══════════════════════════════════════════════
