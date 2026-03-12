@@ -4394,6 +4394,24 @@
         font-size: 0.9rem;
     }
 }
+
+/* ═══════════════════════════════════════════════
+   REDUCED MOTION — Acessibilidade
+   ═══════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .depoimentos-track {
+        transition: none !important;
+    }
+    .faq-body {
+        transition: none !important;
+    }
+}
 </style>
 
 <script>
