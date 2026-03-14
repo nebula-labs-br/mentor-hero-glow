@@ -159,18 +159,39 @@
            DESIGN SYSTEM TOKENS (from design_system2.html)
            ══════════════════════════════════════════════ */
         :root {
-            /* Colors */
+            /* Colors — Base */
             --bg-primary: #FFFFFF;
             --bg-secondary: #F8F9FA;
             --bg-glass: rgba(255, 255, 255, 0.7);
             --bg-dark: #0A1A1C;
+            --bg-dark-alt: #0F1F21;
+            --bg-dark-deep: #080E0F;
+            --bg-card-dark: rgba(14, 28, 30, 0.95);
             --text-primary: #0A1A1C;
             --text-secondary: #6B7280;
+            --text-white: #FFFFFF;
+            --text-black: #000000;
+
+            /* Accents */
             --accent-gold: #B3A275;
+            --accent-gold-light: #D4C89A;
             --accent-green: #16e463;
+            --accent-green-bright: #00FF5F;
+            --accent-urgency: #FF6B4A;
+            --accent-danger: #FF4444;
+            --accent-danger-light: #FF6B6B;
+            --whatsapp-green: #25D366;
             --accent-glow: rgba(179, 162, 117, 0.4);
             --accent-glow-green: rgba(22, 228, 99, 0.4);
-            --gradient-cta: linear-gradient(90deg, #00FF5F 0%, #25D366 100%);
+            --gradient-cta: linear-gradient(90deg, var(--accent-green-bright) 0%, var(--whatsapp-green) 100%);
+
+            /* Mentora Section (light theme) */
+            --mentora-bg: #D7DADD;
+            --mentora-bg-mid: #CDD1D5;
+            --mentora-bg-end: #C8CCD0;
+            --mentora-text-primary: #1a1a1a;
+            --mentora-text-muted: #2a2a2a;
+            --mentora-gold: #8B7A3E;
 
             /* Typography */
             --font-primary: 'Montserrat', sans-serif;
@@ -187,7 +208,7 @@
         body {
             font-family: var(--font-secondary);
             background-color: var(--bg-dark);
-            color: #FFFFFF;
+            color: var(--text-white);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -300,7 +321,7 @@
             font-weight: 900;
             line-height: 1.12;
             letter-spacing: -1.5px;
-            color: #FFFFFF;
+            color: var(--text-white);
             margin-bottom: 24px;
         }
 
@@ -346,7 +367,7 @@
             padding: 20px 44px;
             border-radius: 999px;
             background: var(--gradient-cta);
-            color: #000;
+            color: var(--text-black);
             font-family: var(--font-primary);
             font-weight: 900;
             font-size: 16px;
@@ -416,7 +437,7 @@
             font-family: var(--font-secondary);
             font-size: 12px;
             font-weight: 700;
-            color: #FF6B4A;
+            color: var(--accent-urgency);
             letter-spacing: 0.5px;
         }
 
@@ -453,7 +474,7 @@
         .progress-bar-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #FF4444 0%, #FF6B6B 100%);
+            background: linear-gradient(90deg, var(--accent-danger) 0%, var(--accent-danger-light) 100%);
             border-radius: 999px;
             position: relative;
             box-shadow: 0 0 16px rgba(255, 68, 68, 0.5);
@@ -468,7 +489,7 @@
             transform: translateY(-50%);
             width: 16px;
             height: 16px;
-            background: #FFFFFF;
+            background: var(--text-white);
             border-radius: 50%;
             box-shadow: 0 0 12px var(--accent-green);
         }
@@ -493,7 +514,7 @@
             font-family: var(--font-primary);
             font-size: 32px;
             font-weight: 900;
-            color: #FFFFFF;
+            color: var(--text-white);
         }
 
         .price-current span {
@@ -772,7 +793,7 @@
             line-height: 1.2;
             text-align: center;
             margin-bottom: 64px;
-            color: #FFFFFF;
+            color: var(--text-white);
         }
 
         .pv-title .gold {
@@ -1019,7 +1040,7 @@
             font-weight: 800;
             letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: #FFFFFF;
+            color: var(--text-white);
             margin-bottom: 12px;
             line-height: 1.2;
         }
@@ -1073,7 +1094,7 @@
         }
 
         .wa-card-inner {
-            background: rgba(14, 28, 30, 0.95);
+            background: var(--bg-card-dark);
             border-radius: 19px;
             padding: 3rem;
             display: grid;
@@ -1227,7 +1248,7 @@
         }
 
         .wa-item-text strong {
-            color: #FFFFFF;
+            color: var(--text-white);
             font-weight: 700;
         }
 
@@ -1395,7 +1416,7 @@
     }
     @supports not (backdrop-filter: blur(12px)) {
         .pricing-left {
-            background: #080E0F;
+            background: var(--bg-dark-deep);
         }
     }
 
@@ -1423,7 +1444,7 @@
         display: block;
         font-weight: 800;
         font-size: clamp(1.8rem, 4vw, 2.8rem);
-        color: #FFFFFF;
+        color: var(--text-white);
     }
     .pricing-brand__icon {
         color: var(--accent-gold);
@@ -1464,7 +1485,7 @@
         font-family: var(--font-primary);
         font-size: clamp(3rem, 8vw, 5.5rem);
         font-weight: 900;
-        color: #FFFFFF;
+        color: var(--text-white);
         line-height: 1;
         text-shadow: 0 0 30px rgba(179, 162, 117, 0.3);
         position: relative;
@@ -1536,7 +1557,7 @@
 
     /* ── Right Column — Deliverables ── */
     .pricing-right {
-        background: linear-gradient(180deg, #0F1F21 0%, #0A1A1C 100%);
+        background: linear-gradient(180deg, var(--bg-dark-alt) 0%, var(--bg-dark) 100%);
         padding: 48px 44px;
         display: flex;
         flex-direction: column;
@@ -1586,7 +1607,7 @@
         width: 24px;
         height: 24px;
         border-radius: 50%;
-        background: linear-gradient(135deg, var(--accent-gold), #D4C89A);
+        background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
         display: flex;
         align-items: center;
         justify-content: center;
@@ -2178,7 +2199,7 @@
     /* ── Fifth Fold — Authority Section ── */
     .mentora-section {
         position: relative;
-        background: linear-gradient(180deg, #D7DADD 0%, #CDD1D5 50%, #C8CCD0 100%);
+        background: linear-gradient(180deg, var(--mentora-bg) 0%, var(--mentora-bg-mid) 50%, var(--mentora-bg-end) 100%);
         padding: 120px 5vw 140px;
         overflow: hidden;
     }
@@ -2235,7 +2256,7 @@
         font-weight: 800;
         letter-spacing: 3px;
         text-transform: uppercase;
-        color: #2a2a2a;
+        color: var(--mentora-text-muted);
         margin-bottom: 20px;
         width: fit-content;
     }
@@ -2243,7 +2264,7 @@
     .mentora-label .dot {
         width: 6px;
         height: 6px;
-        background: #2a2a2a;
+        background: var(--mentora-text-muted);
         border-radius: 50%;
         box-shadow: none;
     }
@@ -2255,13 +2276,13 @@
         font-weight: 800;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: #1a1a1a;
+        color: var(--mentora-text-primary);
         margin-bottom: 16px;
         line-height: 1.2;
     }
 
     .mentora-title .gold {
-        color: #8B7A3E;
+        color: var(--mentora-gold);
     }
 
     .mentora-title [data-splitting] .word { display: inline-block; }
@@ -2374,7 +2395,7 @@
         font-family: var(--font-primary);
         font-size: clamp(1.6rem, 2.5vw, 2.2rem);
         font-weight: 800;
-        color: #1a1a1a;
+        color: var(--mentora-text-primary);
         margin-bottom: 4px;
         opacity: 0;
     }
@@ -2383,7 +2404,7 @@
         font-family: var(--font-secondary);
         font-size: 14px;
         font-weight: 600;
-        color: #8B7A3E;
+        color: var(--mentora-gold);
         letter-spacing: 0.1em;
         text-transform: uppercase;
         margin-bottom: 28px;
@@ -2401,12 +2422,12 @@
     }
 
     .mentora-bio-text strong {
-        color: #1a1a1a;
+        color: var(--mentora-text-primary);
         font-weight: 600;
     }
 
     .mentora-bio-text .gold-highlight {
-        color: #8B7A3E;
+        color: var(--mentora-gold);
         font-weight: 600;
     }
 
@@ -2430,7 +2451,7 @@
         font-family: var(--font-primary);
         font-size: 28px;
         font-weight: 900;
-        color: #8B7A3E;
+        color: var(--mentora-gold);
         line-height: 1;
     }
 
@@ -3537,7 +3558,7 @@
         font-family: var(--font-primary);
         font-size: clamp(1.6rem, 4vw, 2.4rem);
         font-weight: 700;
-        color: #FFFFFF;
+        color: var(--text-white);
         line-height: 1.3;
         margin-bottom: 1rem;
     }
@@ -4315,7 +4336,7 @@
     font-family: var(--font-primary);
     font-size: clamp(1.25rem, 3vw, 1.75rem);
     font-weight: 500;
-    color: #FFFFFF;
+    color: var(--text-white);
     margin: 0;
     opacity: 0;
     transform: translateY(20px);
@@ -4325,7 +4346,7 @@
     font-family: var(--font-secondary);
     font-size: clamp(0.875rem, 2vw, 1rem);
     font-weight: 400;
-    color: var(--text-secondary, #6B7280);
+    color: var(--text-secondary);
     margin: 0 0 0.5rem 0;
     opacity: 0;
     transform: translateY(15px);
@@ -4335,8 +4356,8 @@
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
-    background: #25D366;
-    color: #FFFFFF;
+    background: var(--whatsapp-green);
+    color: var(--text-white);
     font-family: var(--font-primary);
     font-weight: 600;
     font-size: 0.95rem;
@@ -4389,7 +4410,7 @@
 .footer-text {
     font-family: var(--font-secondary);
     font-size: 0.8rem;
-    color: var(--text-secondary, #6B7280);
+    color: var(--text-secondary);
     margin: 0;
 }
 
