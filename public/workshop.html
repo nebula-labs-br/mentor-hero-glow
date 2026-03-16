@@ -1374,7 +1374,7 @@
         font-size: clamp(2rem, 5vw, 3.5rem);
         font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.12em;
         color: var(--accent-gold);
         margin-bottom: 12px;
     }
@@ -1398,17 +1398,30 @@
         transform: scaleX(0);
     }
 
-    /* ── Pricing Card Container with Dual Gradient Border ── */
+    /* ── Pricing Card Container with Gradient Border via ::before ── */
     .pricing-card-wrapper {
         max-width: 1080px;
         margin: 0 auto;
         position: relative;
         border-radius: 22px;
-        padding: 1.5px;
-        background: linear-gradient(135deg, var(--accent-gold), transparent 30%, var(--accent-green) 55%, transparent 75%, var(--accent-gold));
+        padding: 0;
+        background: transparent;
         animation: pricing-glow-pulse 3s ease-in-out infinite;
         opacity: 0;
         transform: scale(0.95);
+    }
+    .pricing-card-wrapper::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 22px;
+        padding: 1.5px;
+        background: linear-gradient(135deg, var(--accent-gold), transparent 30%, var(--accent-green) 55%, transparent 75%, var(--accent-gold));
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: 1;
     }
     @keyframes pricing-glow-pulse {
         0%, 100% { box-shadow: 0 0 40px rgba(179, 162, 117, 0.25), 0 0 80px rgba(179, 162, 117, 0.08); }
@@ -1418,7 +1431,7 @@
     .pricing-card {
         display: grid;
         grid-template-columns: 45% 55%;
-        border-radius: 20px;
+        border-radius: 22px;
         overflow: hidden;
         min-height: 580px;
     }
