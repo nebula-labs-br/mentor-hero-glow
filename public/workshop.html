@@ -19,7 +19,7 @@
 
     <!-- SEO Primary -->
     <title>Workshop Criando Minha Consultoria Lucrativa | Devolvi Meu Crachá — R$49</title>
-    <meta name="description" content="Workshop online e ao vivo: aprenda a criar sua Consultoria Empresarial lucrativa com método validado por centenas de consultores. Sábado, 28 de Março, das 8h30 às 12h30. <meta name="description" content="Workshop online e ao vivo: aprenda a criar sua Consultoria Empresarial lucrativa com método validado por centenas de consultores. Sábado, 28 de Março, das 8h30 às 12h30. De R$497 por apenas R$49. Garantia de 7 dias."/>
+    <meta name="description" content="Workshop online e ao vivo: aprenda a criar sua Consultoria Empresarial lucrativa com método validado por centenas de consultores. Sábado, 28 de Março, das 8h30 às 12h30. De R$497 por apenas R$49. Garantia de 7 dias."/>
     <link rel="canonical" href="https://devolvimeucracha.com.br/workshop.html"/>
 
     <!-- Robots -->
@@ -29,7 +29,7 @@
     <meta property="og:type" content="website"/>
     <meta property="og:locale" content="pt_BR"/>
     <meta property="og:site_name" content="Devolvi Meu Crachá"/>
-    <meta property="og:title" content="<meta property="og:title" content="Workshop Criando Minha Consultoria Empresarial Lucrativa — De R$497 por R$49"/>"/>
+    <meta property="og:title" content="Workshop Criando Minha Consultoria Empresarial Lucrativa — De R$497 por R$49"/>
     <meta property="og:description" content="Uma manhã de imersão densa e prática para profissionais experientes que querem criar uma consultoria independente, lucrativa e com posicionamento de autoridade."/>
     <meta property="og:url" content="https://devolvimeucracha.com.br/workshop.html"/>
     <meta property="og:image" content="https://devolvimeucracha.com.br/images/mentora-hero.png"/>
@@ -666,12 +666,19 @@
 
         /* Mobile */
         @media (max-width: 767px) {
-            .hero {
-                min-height: auto;
+            /* Hide fixed header on mobile */
+            header {
+                display: none !important;
+            }
+
+            /* Show mobile hero top bar */
+            .mobile-hero-top {
+                display: flex !important;
             }
 
             .hero {
-                min-height: auto;
+                min-height: 100vh;
+                min-height: 100dvh;
                 overflow: visible;
                 flex-direction: column;
                 align-items: stretch;
@@ -679,41 +686,126 @@
 
             .hero-container {
                 grid-template-columns: 1fr;
-                padding: 100px 6vw 40px;
-                gap: 48px;
+                padding: 0 5vw 100px;
+                gap: 0;
             }
 
             .hero-left { order: 1; text-align: left; }
-            .hero-right { order: 2; }
+            .hero-right { display: none; }
 
-            .hero-title { font-size: clamp(1.8rem, 7vw, 2.6rem); letter-spacing: -1px; }
+            .hero-title { 
+                font-size: clamp(1.5rem, 6.5vw, 2.2rem); 
+                letter-spacing: -0.5px; 
+                margin-bottom: 16px;
+                line-height: 1.18;
+            }
 
-            .mentor-image-wrapper {
-                max-width: 320px;
-                margin: 0 auto;
+            .hero-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 24px;
+                line-height: 1.6;
+                color: rgba(255,255,255,0.55);
+            }
+
+            .workshop-label {
+                margin-bottom: 20px;
+                font-size: 10px;
+                padding: 6px 14px;
+                letter-spacing: 2px;
+            }
+
+            .cta-wrapper {
+                display: none;
             }
 
             .mentor-frame, .mentor-frame-bottom { display: none; }
 
             .hero-info-bar {
-                position: static;
-                gap: 12px;
-                padding: 32px 6vw;
-                justify-content: flex-start;
-                flex-direction: column;
-                backdrop-filter: none;
-                background: rgba(255,255,255,0.04);
-                border-top: 1px solid rgba(255,255,255,0.06);
-                inset: auto;
+                display: none;
             }
-
-            .info-item { font-size: 13px; }
 
             .mobile-sticky-cta { display: block; }
 
             .progress-bar-track { max-width: 100%; }
 
             .price-current { font-size: 26px; }
+
+            /* Mobile pricing card inside hero */
+            .ticket-block {
+                background: var(--bg-card-dark);
+                border-radius: 16px;
+                padding: 20px;
+                border: 1px solid rgba(255,255,255,0.06);
+                margin-top: 8px;
+            }
+
+            .ticket-urgency {
+                margin-bottom: 10px;
+                font-size: 11px;
+                padding: 5px 12px;
+            }
+
+            .progress-label {
+                font-size: 12px;
+                margin-bottom: 8px;
+            }
+
+            .progress-bar-track {
+                margin-bottom: 12px;
+                height: 8px;
+            }
+
+            .price-row {
+                gap: 12px;
+            }
+
+            .price-old { font-size: 14px; }
+            .price-current { font-size: 24px; }
+        }
+
+        /* ══════════════════════════════════════════════
+           MOBILE HERO TOP BAR (logo + mentora)
+           ══════════════════════════════════════════════ */
+        .mobile-hero-top {
+            display: none;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: 0 5vw;
+            padding-top: 16px;
+            position: relative;
+            z-index: 10;
+            margin-bottom: 20px;
+        }
+
+        .mobile-hero-top .mobile-logo-wrap {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-bottom: 16px;
+        }
+
+        .mobile-hero-top .mobile-logo-wrap img {
+            width: 160px;
+            height: auto;
+        }
+
+        .mobile-hero-top .mobile-mentora-wrap {
+            flex: 0 0 45%;
+            max-width: 180px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+        }
+
+        .mobile-hero-top .mobile-mentora-wrap img {
+            width: 100%;
+            height: auto;
+            max-height: 220px;
+            object-fit: contain;
+            object-position: bottom;
+            display: block;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
         }
 
         /* Performance: will-change hints */
@@ -1812,6 +1904,16 @@
 
     <!-- Vignette -->
     <div class="hero-vignette"></div>
+
+    <!-- Mobile Hero Top: Logo + Mentora side by side -->
+    <div class="mobile-hero-top">
+        <div class="mobile-logo-wrap">
+            <img src="images/logo-workshop.png" alt="Criando Minha Consultoria Lucrativa" width="160" height="48" decoding="async">
+        </div>
+        <div class="mobile-mentora-wrap">
+            <img src="images/mentora-mobile.png" alt="Mentora" width="180" height="220" decoding="async">
+        </div>
+    </div>
 
     <!-- Main Container -->
     <div class="hero-container">
