@@ -823,20 +823,33 @@
         .pv-card {
             position: relative;
             background: rgba(255, 255, 255, 0.025);
-            border: 1px solid rgba(179, 162, 117, 0.15);
             border-radius: 16px;
             padding: 0;
             display: flex;
             flex-direction: column;
             overflow: hidden;
             opacity: 0;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pv-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(179, 162, 117, 0.4), rgba(179, 162, 117, 0.08), rgba(179, 162, 117, 0.25));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            z-index: 1;
+            transition: opacity 0.3s ease;
         }
 
         .pv-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 12px 40px rgba(179, 162, 117, 0.12);
-            border-color: rgba(179, 162, 117, 0.4);
         }
 
         /* Animated border bottom */
