@@ -3919,5 +3919,33 @@ fbq('track', 'PageView');
 
 <!-- No entrance animations -->
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var btns = document.querySelectorAll('a[href*="sun.eduzz.com"]');
+    btns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'InitiateCheckout');
+            }
+        });
+    });
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+    var params = new URLSearchParams(window.location.search);
+    var utmParams = new URLSearchParams();
+    utmKeys.forEach(function (k) { if (params.has(k)) utmParams.set(k, params.get(k)); });
+    if (!utmParams.toString()) return;
+    document.querySelectorAll('a[href*="sun.eduzz.com"]').forEach(function (a) {
+        var url = new URL(a.href);
+        utmParams.forEach(function (v, k) { url.searchParams.set(k, v); });
+        a.href = url.toString();
+    });
+});
+</script>
+
 </body>
 </html>
