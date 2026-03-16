@@ -2646,71 +2646,9 @@
     /* ── Splitting.js init ── */
     Splitting();
 
-    /* ── GSAP Master Timeline ── */
+    /* ── GSAP — Hero: only progress bar + CountUp ── */
     document.addEventListener('DOMContentLoaded', () => {
-        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-        // 1. Background already visible — start with label
-        tl.to("#hero-label", {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-        }, 0.3);
-
-        // 2. Splitting chars animate in
-        const chars = document.querySelectorAll(".hero-title .char");
-        tl.to(chars, {
-            opacity: 1,
-            y: 0,
-            rotateX: 0,
-            duration: 0.6,
-            stagger: 0.015,
-        }, 0.5);
-
-        // 3. Subtitle
-        tl.to("#hero-subtitle", {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-        }, 1.2);
-
-        // 4. CTA Button
-        tl.to("#hero-cta", {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-        }, 1.5);
-
-        // 5. Ticket block
-        tl.to("#hero-tickets", {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            onComplete: animateProgress,
-        }, 1.8);
-
-        // 6. Mentor image
-        tl.to("#hero-image", {
-            opacity: 1,
-            x: 0,
-            duration: 1,
-            ease: "power2.out",
-        }, 1.0);
-
-        // 7. Info bar
-        tl.to("#hero-info-bar", {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-        }, 2.2);
-
-        // Set initial states
-        gsap.set("#hero-label", { opacity: 0, y: 20 });
-        gsap.set("#hero-subtitle", { opacity: 0, y: 30 });
-        gsap.set("#hero-cta", { opacity: 0, y: 30 });
-        gsap.set("#hero-tickets", { opacity: 0, y: 30 });
-        gsap.set("#hero-image", { opacity: 0, x: 80 });
-        gsap.set("#hero-info-bar", { opacity: 0, y: 20 });
+        animateProgress();
     });
 
     /* ── Progress Bar Animation ── */
