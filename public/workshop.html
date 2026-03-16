@@ -823,20 +823,33 @@
         .pv-card {
             position: relative;
             background: rgba(255, 255, 255, 0.025);
-            border: 1px solid rgba(179, 162, 117, 0.15);
             border-radius: 16px;
             padding: 0;
             display: flex;
             flex-direction: column;
             overflow: hidden;
             opacity: 0;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pv-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(179, 162, 117, 0.4), rgba(179, 162, 117, 0.08), rgba(179, 162, 117, 0.25));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            z-index: 1;
+            transition: opacity 0.3s ease;
         }
 
         .pv-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 12px 40px rgba(179, 162, 117, 0.12);
-            border-color: rgba(179, 162, 117, 0.4);
         }
 
         /* Animated border bottom */
@@ -1038,7 +1051,7 @@
             font-family: var(--font-primary);
             font-size: clamp(1.8rem, 3.5vw, 3rem);
             font-weight: 800;
-            letter-spacing: 0.18em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--text-white);
             margin-bottom: 12px;
@@ -1083,10 +1096,24 @@
         .wa-card-outer {
             position: relative;
             border-radius: 20px;
-            padding: 1px;
-            background: linear-gradient(135deg, rgba(179, 162, 117, 0.4), rgba(179, 162, 117, 0.08), rgba(179, 162, 117, 0.25));
+            padding: 0;
+            background: transparent;
             opacity: 0;
             transition: box-shadow 0.4s ease;
+        }
+
+        .wa-card-outer::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(179, 162, 117, 0.4), rgba(179, 162, 117, 0.08), rgba(179, 162, 117, 0.25));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            z-index: 1;
         }
 
         .wa-card-outer:hover {
@@ -1095,7 +1122,7 @@
 
         .wa-card-inner {
             background: var(--bg-card-dark);
-            border-radius: 19px;
+            border-radius: 20px;
             padding: 3rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1277,7 +1304,7 @@
 
             .wa-card-inner {
                 padding: 1.5rem;
-                border-radius: 12px;
+                border-radius: 13px;
             }
 
             .wa-card-outer {
@@ -1347,7 +1374,7 @@
         font-size: clamp(2rem, 5vw, 3.5rem);
         font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.12em;
         color: var(--accent-gold);
         margin-bottom: 12px;
     }
@@ -1371,17 +1398,30 @@
         transform: scaleX(0);
     }
 
-    /* ── Pricing Card Container with Dual Gradient Border ── */
+    /* ── Pricing Card Container with Gradient Border via ::before ── */
     .pricing-card-wrapper {
         max-width: 1080px;
         margin: 0 auto;
         position: relative;
         border-radius: 22px;
-        padding: 1.5px;
-        background: linear-gradient(135deg, var(--accent-gold), transparent 30%, var(--accent-green) 55%, transparent 75%, var(--accent-gold));
+        padding: 0;
+        background: transparent;
         animation: pricing-glow-pulse 3s ease-in-out infinite;
         opacity: 0;
         transform: scale(0.95);
+    }
+    .pricing-card-wrapper::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 22px;
+        padding: 1.5px;
+        background: linear-gradient(135deg, var(--accent-gold), transparent 30%, var(--accent-green) 55%, transparent 75%, var(--accent-gold));
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: 1;
     }
     @keyframes pricing-glow-pulse {
         0%, 100% { box-shadow: 0 0 40px rgba(179, 162, 117, 0.25), 0 0 80px rgba(179, 162, 117, 0.08); }
@@ -1391,7 +1431,7 @@
     .pricing-card {
         display: grid;
         grid-template-columns: 45% 55%;
-        border-radius: 20px;
+        border-radius: 22px;
         overflow: hidden;
         min-height: 580px;
     }
@@ -1568,7 +1608,7 @@
         font-size: clamp(1.2rem, 2.5vw, 1.6rem);
         font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.1em;
         color: var(--accent-gold);
         margin-bottom: 32px;
     }
@@ -1604,21 +1644,24 @@
     }
     .pricing-check {
         flex-shrink: 0;
-        width: 24px;
-        height: 24px;
+        width: 28px;
+        height: 28px;
         border-radius: 50%;
-        background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
+        border: 1.5px solid var(--accent-gold);
+        background: transparent;
         display: flex;
         align-items: center;
         justify-content: center;
         margin-top: 2px;
-        transition: transform 0.25s ease;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
     .pricing-check svg {
-        width: 13px;
-        height: 13px;
-        stroke: var(--bg-dark);
+        width: 14px;
+        height: 14px;
+        stroke: var(--accent-gold);
         stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
         fill: none;
     }
     .pricing-item__text {
@@ -1637,7 +1680,10 @@
         border-bottom: none;
     }
     .pricing-item--guarantee .pricing-check {
-        background: var(--accent-green);
+        border-color: var(--accent-green);
+    }
+    .pricing-item--guarantee .pricing-check svg {
+        stroke: var(--accent-green);
     }
     .pricing-guarantee-badge {
         display: inline-block;
@@ -1756,8 +1802,11 @@
         .pricing-card-wrapper {
             border-radius: 16px;
         }
+        .pricing-card-wrapper::before {
+            border-radius: 16px;
+        }
         .pricing-card {
-            border-radius: 14px;
+            border-radius: 16px;
         }
         .pricing-urgency {
             flex-direction: column;
@@ -2620,6 +2669,7 @@
 
     // Sync Lenis with GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
+    ScrollTrigger.defaults({ fastScrollEnd: true, preventOverlaps: true });
     gsap.ticker.add((time) => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
 
@@ -3279,6 +3329,9 @@
 </script>
 
 
+<!-- Divider: Mentora → Pricing -->
+<div class="section-divider" id="section-divider-5"></div>
+
 <!-- ══════════════════════════════════════════════
      PRICING SECTION — SEXTA DOBRA
      ══════════════════════════════════════════════ -->
@@ -3340,31 +3393,31 @@
 
                 <div class="pricing-items">
                     <div class="pricing-item">
-                        <div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                        <div class="pricing-check"><svg viewBox="0 0 16 16"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg></div>
                         <div class="pricing-item__text">Uma manhã de imersão densa e prática — sem teoria genérica, direto ao que funciona para consultorias de alto valor</div>
                     </div>
                     <div class="pricing-item">
-                        <div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                        <div class="pricing-check"><svg viewBox="0 0 16 16"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg></div>
                         <div class="pricing-item__text">Método passo a passo: nicho, portfólio e precificação baseada em valor — não em hora trabalhada</div>
                     </div>
                     <div class="pricing-item">
-                        <div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                        <div class="pricing-check"><svg viewBox="0 0 16 16"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg></div>
                         <div class="pricing-item__text">Material exclusivo de apoio para sair do workshop com sua estrutura de consultoria pronta para apresentar ao mercado</div>
                     </div>
                     <div class="pricing-item">
-                        <div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                        <div class="pricing-check"><svg viewBox="0 0 16 16"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg></div>
                         <div class="pricing-item__text">Acesso ao método proprietário validado por centenas de consultores que saíram do zero ao primeiro contrato de alto valor</div>
                     </div>
                     <div class="pricing-item">
-                        <div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                        <div class="pricing-check"><svg viewBox="0 0 16 16"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg></div>
                         <div class="pricing-item__text"><strong>BÔNUS:</strong> Guia dos 15 nichos de consultoria com maior demanda e margem em 2026 — filtrados por viabilidade e potencial de escala</div>
                     </div>
                     <div class="pricing-item">
-                        <div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                        <div class="pricing-check"><svg viewBox="0 0 16 16"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg></div>
                         <div class="pricing-item__text"><strong>BÔNUS:</strong> Aula exclusiva sobre os bastidores do mercado — o que ninguém conta sobre como clientes reais tomam decisões de contratar</div>
                     </div>
                     <div class="pricing-item pricing-item--guarantee">
-                        <div class="pricing-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                        <div class="pricing-check"><svg viewBox="0 0 16 16"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg></div>
                         <div class="pricing-item__text">
                             <span class="pricing-guarantee-badge">GARANTIA TOTAL</span><br/>
                             7 dias de garantia incondicional
@@ -3531,6 +3584,9 @@
 
 </script>
 
+<!-- Divider: Pricing → Depoimentos -->
+<div class="section-divider" id="section-divider-6"></div>
+
 <!-- ══════════════════════════════════════════════
      DEPOIMENTOS SECTION
      ══════════════════════════════════════════════ -->
@@ -3541,14 +3597,6 @@
         background: var(--bg-dark);
         overflow: hidden;
     }
-    .depoimentos-section::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
-        opacity: 0.3;
-    }
     .depoimentos-header {
         text-align: center;
         max-width: 800px;
@@ -3557,7 +3605,7 @@
     .depoimentos-header__title {
         font-family: var(--font-primary);
         font-size: clamp(1.6rem, 4vw, 2.4rem);
-        font-weight: 700;
+        font-weight: 800;
         color: var(--text-white);
         line-height: 1.3;
         margin-bottom: 1rem;
@@ -3792,6 +3840,9 @@
 })();
 </script>
 
+<!-- Divider: Depoimentos → FAQ -->
+<div class="section-divider" id="section-divider-7"></div>
+
 <!-- ══════════════════════════════════════════════
      DOBRA FAQ
      ══════════════════════════════════════════════ -->
@@ -3836,7 +3887,7 @@
         font-family: var(--font-primary);
         font-size: clamp(1.5rem, 3vw, 2.2rem);
         font-weight: 800;
-        letter-spacing: 0.2em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
         color: rgba(255,255,255,0.9);
         margin: 0 0 1.5rem;
@@ -4447,8 +4498,31 @@
 
 <script>
 (function(){
-    /* ── Animações de entrada do Contato ── */
+    /* ── Animações dos dividers extras ── */
     gsap.registerPlugin(ScrollTrigger);
+
+    // Divider 5: Mentora → Pricing
+    gsap.set('#section-divider-5', { opacity: 0 });
+    gsap.to('#section-divider-5', {
+        opacity: 0.5, duration: 0.4,
+        scrollTrigger: { trigger: '#section-divider-5', start: 'top 90%', toggleActions: 'play none none none' }
+    });
+
+    // Divider 6: Pricing → Depoimentos
+    gsap.set('#section-divider-6', { opacity: 0 });
+    gsap.to('#section-divider-6', {
+        opacity: 0.5, duration: 0.4,
+        scrollTrigger: { trigger: '#section-divider-6', start: 'top 90%', toggleActions: 'play none none none' }
+    });
+
+    // Divider 7: Depoimentos → FAQ
+    gsap.set('#section-divider-7', { opacity: 0 });
+    gsap.to('#section-divider-7', {
+        opacity: 0.5, duration: 0.4,
+        scrollTrigger: { trigger: '#section-divider-7', start: 'top 90%', toggleActions: 'play none none none' }
+    });
+
+    /* ── Animações de entrada do Contato ── */
 
     // Configurar estado inicial
     gsap.set('#contato-divider', { scaleX: 0 });
@@ -4461,38 +4535,17 @@
         start: 'top 80%',
         once: true,
         onEnter: () => {
-            // [0.0s] Separador
             gsap.to('#contato-divider', {
-                scaleX: 1,
-                duration: 0.6,
-                ease: 'power2.out'
+                scaleX: 1, duration: 0.6, ease: 'power2.out'
             });
-
-            // [0.1s] Linha 1
             gsap.to('#contato-line1', {
-                opacity: 1,
-                y: 0,
-                duration: 0.5,
-                delay: 0.1,
-                ease: 'power2.out'
+                opacity: 1, y: 0, duration: 0.5, delay: 0.1, ease: 'power2.out'
             });
-
-            // [0.2s] Linha 2
             gsap.to('#contato-line2', {
-                opacity: 1,
-                y: 0,
-                duration: 0.5,
-                delay: 0.2,
-                ease: 'power2.out'
+                opacity: 1, y: 0, duration: 0.5, delay: 0.2, ease: 'power2.out'
             });
-
-            // [0.3s] Botão com elastic
             gsap.to('#whatsapp-btn', {
-                opacity: 1,
-                scale: 1,
-                duration: 0.6,
-                delay: 0.3,
-                ease: 'elastic.out(1, 0.5)'
+                opacity: 1, scale: 1, duration: 0.6, delay: 0.3, ease: 'elastic.out(1, 0.5)'
             });
         }
     });
