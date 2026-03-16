@@ -1644,21 +1644,24 @@
     }
     .pricing-check {
         flex-shrink: 0;
-        width: 24px;
-        height: 24px;
+        width: 28px;
+        height: 28px;
         border-radius: 50%;
-        background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
+        border: 1.5px solid var(--accent-gold);
+        background: transparent;
         display: flex;
         align-items: center;
         justify-content: center;
         margin-top: 2px;
-        transition: transform 0.25s ease;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
     .pricing-check svg {
-        width: 13px;
-        height: 13px;
-        stroke: var(--bg-dark);
+        width: 14px;
+        height: 14px;
+        stroke: var(--accent-gold);
         stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
         fill: none;
     }
     .pricing-item__text {
