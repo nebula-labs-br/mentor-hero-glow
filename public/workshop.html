@@ -297,7 +297,6 @@
             color: var(--accent-gold);
             margin-bottom: 32px;
             width: fit-content;
-            opacity: 0;
         }
 
         .workshop-label .dot {
@@ -328,8 +327,6 @@
         .hero-title [data-splitting] .word { display: inline-block; }
         .hero-title [data-splitting] .char {
             display: inline-block;
-            opacity: 0;
-            transform: translateY(60px) rotateX(-40deg);
             will-change: transform, opacity;
         }
 
@@ -351,13 +348,11 @@
             line-height: 1.7;
             max-width: 540px;
             margin-bottom: 40px;
-            opacity: 0;
         }
 
         /* CTA Button – Glowing Green from design_system */
         .cta-wrapper {
             margin-bottom: 48px;
-            opacity: 0;
         }
 
         .btn-cta {
@@ -422,7 +417,6 @@
            TICKET PROGRESS BAR
            ══════════════════════════════════════════════ */
         .ticket-block {
-            opacity: 0;
         }
 
         .ticket-urgency {
@@ -529,7 +523,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
         }
 
         .mentor-image-wrapper {
@@ -606,7 +599,6 @@
             justify-content: center;
             gap: 60px;
             flex-wrap: wrap;
-            opacity: 0;
         }
 
         .info-item {
@@ -741,7 +733,7 @@
             width: 100%;
             height: 1px;
             background: linear-gradient(90deg, transparent 0%, var(--accent-gold) 30%, var(--accent-gold) 70%, transparent 100%);
-            opacity: 0;
+            opacity: 0.5;
         }
 
         /* Section */
@@ -806,9 +798,6 @@
 
         .pv-title [data-splitting] .char {
             display: inline-block;
-            opacity: 0;
-            transform: translateY(30px);
-            will-change: transform, opacity;
         }
 
         /* Cards Grid */
@@ -828,7 +817,6 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            opacity: 0;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -942,7 +930,6 @@
         /* CTA at bottom */
         .pv-cta-wrapper {
             text-align: center;
-            opacity: 0;
         }
 
         /* Responsive */
@@ -1068,9 +1055,6 @@
 
         .wa-title [data-splitting] .char {
             display: inline-block;
-            opacity: 0;
-            transform: translateY(30px);
-            will-change: transform, opacity;
         }
 
         /* Decorative line under title */
@@ -1089,7 +1073,6 @@
             font-weight: 400;
             color: rgba(255, 255, 255, 0.6);
             line-height: 1.75;
-            opacity: 0;
         }
 
         /* Main card with gradient border */
@@ -1098,7 +1081,6 @@
             border-radius: 20px;
             padding: 0;
             background: transparent;
-            opacity: 0;
             transition: box-shadow 0.4s ease;
         }
 
@@ -1133,7 +1115,6 @@
         /* Left column — tablets image */
         .wa-image-col {
             position: relative;
-            opacity: 0;
         }
 
         .wa-image-wrap {
@@ -1212,9 +1193,6 @@
 
         .wa-list-title [data-splitting] .char {
             display: inline-block;
-            opacity: 0;
-            transform: translateY(20px);
-            will-change: transform, opacity;
         }
 
         /* Deliverable item */
@@ -1226,7 +1204,6 @@
             border-bottom: 1px solid rgba(179, 162, 117, 0.1);
             cursor: default;
             transition: transform 0.25s ease;
-            opacity: 0;
         }
 
         .wa-item:last-child {
@@ -1379,9 +1356,8 @@
         margin-bottom: 12px;
     }
     .pricing-header__title .char {
-        opacity: 0;
-        transform: translateY(15px);
         display: inline-block;
+    }
     }
     .pricing-header__sub {
         font-family: var(--font-secondary);
@@ -1407,8 +1383,6 @@
         padding: 0;
         background: transparent;
         animation: pricing-glow-pulse 3s ease-in-out infinite;
-        opacity: 0;
-        transform: scale(0.95);
     }
     .pricing-card-wrapper::before {
         content: '';
@@ -1613,8 +1587,6 @@
         margin-bottom: 32px;
     }
     .pricing-right__title .char {
-        opacity: 0;
-        transform: translateY(10px);
         display: inline-block;
     }
 
@@ -2323,9 +2295,6 @@
     .mentora-title [data-splitting] .word { display: inline-block; }
     .mentora-title [data-splitting] .char {
         display: inline-block;
-        opacity: 0;
-        transform: translateY(30px);
-        will-change: transform, opacity;
     }
 
     /* Decorative line */
@@ -2350,7 +2319,6 @@
     /* Left — Image */
     .mentora-image-col {
         position: relative;
-        opacity: 0;
     }
 
     .mentora-image-wrap {
@@ -2432,7 +2400,6 @@
         font-weight: 800;
         color: var(--mentora-text-primary);
         margin-bottom: 4px;
-        opacity: 0;
     }
 
     .mentora-role {
@@ -2443,7 +2410,6 @@
         letter-spacing: 0.1em;
         text-transform: uppercase;
         margin-bottom: 28px;
-        opacity: 0;
     }
 
     .mentora-bio-text {
@@ -2453,7 +2419,6 @@
         color: rgba(0, 0, 0, 0.6);
         line-height: 1.8;
         margin-bottom: 20px;
-        opacity: 0;
     }
 
     .mentora-bio-text strong {
@@ -2473,7 +2438,6 @@
         margin-top: 12px;
         padding-top: 28px;
         border-top: 1px solid rgba(0, 0, 0, 0.1);
-        opacity: 0;
     }
 
     .mentora-stat {
@@ -2682,71 +2646,9 @@
     /* ── Splitting.js init ── */
     Splitting();
 
-    /* ── GSAP Master Timeline ── */
+    /* ── GSAP — Hero: only progress bar + CountUp ── */
     document.addEventListener('DOMContentLoaded', () => {
-        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-        // 1. Background already visible — start with label
-        tl.to("#hero-label", {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-        }, 0.3);
-
-        // 2. Splitting chars animate in
-        const chars = document.querySelectorAll(".hero-title .char");
-        tl.to(chars, {
-            opacity: 1,
-            y: 0,
-            rotateX: 0,
-            duration: 0.6,
-            stagger: 0.015,
-        }, 0.5);
-
-        // 3. Subtitle
-        tl.to("#hero-subtitle", {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-        }, 1.2);
-
-        // 4. CTA Button
-        tl.to("#hero-cta", {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-        }, 1.5);
-
-        // 5. Ticket block
-        tl.to("#hero-tickets", {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            onComplete: animateProgress,
-        }, 1.8);
-
-        // 6. Mentor image
-        tl.to("#hero-image", {
-            opacity: 1,
-            x: 0,
-            duration: 1,
-            ease: "power2.out",
-        }, 1.0);
-
-        // 7. Info bar
-        tl.to("#hero-info-bar", {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-        }, 2.2);
-
-        // Set initial states
-        gsap.set("#hero-label", { opacity: 0, y: 20 });
-        gsap.set("#hero-subtitle", { opacity: 0, y: 30 });
-        gsap.set("#hero-cta", { opacity: 0, y: 30 });
-        gsap.set("#hero-tickets", { opacity: 0, y: 30 });
-        gsap.set("#hero-image", { opacity: 0, x: 80 });
-        gsap.set("#hero-info-bar", { opacity: 0, y: 20 });
+        animateProgress();
     });
 
     /* ── Progress Bar Animation ── */
@@ -2800,240 +2702,10 @@
     }
 
     /* ══════════════════════════════════════════════
-       SECOND FOLD — GSAP ANIMATIONS
+       PARALLAX ANIMATIONS ONLY (no entrance animations)
        ══════════════════════════════════════════════ */
 
-    // Divider fade in
-    gsap.to("#section-divider", {
-        opacity: 0.5,
-        duration: 0.4,
-        scrollTrigger: {
-            trigger: "#section-divider",
-            start: "top 90%",
-            toggleActions: "play none none none",
-        }
-    });
-
-    // Title chars animate with ScrollTrigger
-    const pvChars = document.querySelectorAll("#pv-title .char");
-    gsap.to(pvChars, {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        stagger: 0.08,
-        ease: "power3.out",
-        scrollTrigger: {
-            trigger: "#pv-title",
-            start: "top 80%",
-            toggleActions: "play none none none",
-        }
-    });
-
-    // Cards staggered entrance
-    const pvCards = document.querySelectorAll(".pv-card");
-    pvCards.forEach((card, i) => {
-        gsap.to(card, {
-            opacity: 1,
-            x: 0,
-            duration: 0.7,
-            ease: "power3.out",
-            scrollTrigger: {
-                trigger: card,
-                start: "top 85%",
-                toggleActions: "play none none none",
-            },
-            delay: i * 0.15,
-        });
-
-        // Number scale
-        const num = card.querySelector('.pv-card-number');
-        if (num) {
-            gsap.from(num, {
-                scale: 1.3,
-                duration: 0.7,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 85%",
-                    toggleActions: "play none none none",
-                },
-                delay: i * 0.15,
-            });
-        }
-
-        // Border draw
-        const border = card.querySelector('.card-border-draw');
-        if (border) {
-            gsap.to(border, {
-                scaleX: 1,
-                duration: 0.6,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 80%",
-                    toggleActions: "play none none none",
-                },
-                delay: i * 0.15 + 0.3,
-            });
-        }
-    });
-
-    // Set initial states for cards
-    gsap.set(".pv-card", { opacity: 0, x: -40 });
-
-    // CTA entrance
-    gsap.to("#pv-cta", {
-        opacity: 1,
-        scale: 1,
-        duration: 0.6,
-        ease: "back.out(1.4)",
-        scrollTrigger: {
-            trigger: "#pv-cta",
-            start: "top 90%",
-            toggleActions: "play none none none",
-        }
-    });
-    gsap.set("#pv-cta", { opacity: 0, scale: 0.9 });
-
-
-
-    /* ══════════════════════════════════════════════
-       THIRD FOLD — GSAP ANIMATIONS
-       ══════════════════════════════════════════════ */
-
-    // Divider 2
-    gsap.to("#section-divider-2", {
-        opacity: 0.5,
-        duration: 0.4,
-        scrollTrigger: {
-            trigger: "#section-divider-2",
-            start: "top 90%",
-            toggleActions: "play none none none",
-        }
-    });
-
-    // Title line scaleX
-    gsap.to("#wa-title-line", {
-        scaleX: 1,
-        duration: 0.6,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#workshop-about",
-            start: "top 80%",
-            toggleActions: "play none none none",
-        }
-    });
-
-    // Title chars
-    const waChars = document.querySelectorAll("#wa-title .char");
-    gsap.to(waChars, {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-            trigger: "#wa-title",
-            start: "top 80%",
-            toggleActions: "play none none none",
-        }
-    });
-
-    // Subtitle
-    gsap.to("#wa-subtitle", {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#wa-subtitle",
-            start: "top 85%",
-            toggleActions: "play none none none",
-        }
-    });
-    gsap.set("#wa-subtitle", { y: 20 });
-
-    // Card materializes
-    gsap.to("#wa-card", {
-        opacity: 1,
-        scale: 1,
-        duration: 0.5,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#wa-card",
-            start: "top 82%",
-            toggleActions: "play none none none",
-        }
-    });
-    gsap.set("#wa-card", { scale: 0.97 });
-
-    // Image slides in
-    gsap.to("#wa-image", {
-        opacity: 1,
-        x: 0,
-        duration: 0.7,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#wa-card",
-            start: "top 78%",
-            toggleActions: "play none none none",
-        }
-    });
-    gsap.set("#wa-image", { x: -30 });
-
-    // List title chars
-    const waListChars = document.querySelectorAll("#wa-list-title .char");
-    gsap.to(waListChars, {
-        opacity: 1,
-        y: 0,
-        duration: 0.4,
-        stagger: 0.07,
-        ease: "power3.out",
-        scrollTrigger: {
-            trigger: "#wa-list-title",
-            start: "top 85%",
-            toggleActions: "play none none none",
-        }
-    });
-
-    // List items stagger
-    const waItems = document.querySelectorAll("[data-wa-item]");
-    waItems.forEach((item, i) => {
-        gsap.to(item, {
-            opacity: 1,
-            x: 0,
-            duration: 0.5,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: item,
-                start: "top 90%",
-                toggleActions: "play none none none",
-            },
-            delay: i * 0.12,
-        });
-
-        // Check icon bounce
-        const check = item.querySelector('.wa-check');
-        if (check) {
-            gsap.from(check, {
-                scale: 0,
-                duration: 0.5,
-                ease: "elastic.out(1, 0.5)",
-                scrollTrigger: {
-                    trigger: item,
-                    start: "top 90%",
-                    toggleActions: "play none none none",
-                },
-                delay: i * 0.12 + 0.1,
-            });
-        }
-    });
-    gsap.set("[data-wa-item]", { opacity: 0, x: 20 });
-
-
-
-
-    // Image parallax on scroll
+    // Image parallax — third fold
     gsap.to("#wa-image", {
         y: -30,
         ease: "none",
@@ -3044,102 +2716,8 @@
             scrub: 1,
         }
     });
-    /* ══════════════════════════════════════════════
-       FOURTH FOLD — GSAP ANIMATIONS
-       ══════════════════════════════════════════════ */
 
-    // Divider 3 — scaleX reveal
-    gsap.to("#section-divider-3", {
-        scaleX: 1,
-        duration: 0.6,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#section-divider-3",
-            start: "top 90%",
-            toggleActions: "play none none none",
-        }
-    });
-
-    // Card materializes
-    gsap.to("#pq-card", {
-        opacity: 1,
-        scale: 1,
-        duration: 0.5,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#pq-card",
-            start: "top 82%",
-            toggleActions: "play none none none",
-        }
-    });
-    gsap.set("#pq-card", { scale: 0.97 });
-
-    // List title — Splitting.js chars
-    if (typeof Splitting !== 'undefined') {
-        Splitting({ target: '#pq-list-title [data-splitting]' });
-    }
-    const pqListChars = document.querySelectorAll("#pq-list-title .char");
-    gsap.to(pqListChars, {
-        opacity: 1,
-        y: 0,
-        duration: 0.4,
-        stagger: 0.07,
-        ease: "power3.out",
-        scrollTrigger: {
-            trigger: "#pq-list-title",
-            start: "top 85%",
-            toggleActions: "play none none none",
-        }
-    });
-
-    // Image slides in from the right
-    gsap.to("#pq-image", {
-        opacity: 1,
-        x: 0,
-        duration: 0.7,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#pq-card",
-            start: "top 78%",
-            toggleActions: "play none none none",
-        }
-    });
-    gsap.set("#pq-image", { x: 30 });
-
-    // List items stagger
-    const pqItems = document.querySelectorAll("[data-pq-item]");
-    pqItems.forEach((item, i) => {
-        gsap.to(item, {
-            opacity: 1,
-            x: 0,
-            duration: 0.5,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: item,
-                start: "top 90%",
-                toggleActions: "play none none none",
-            },
-            delay: i * 0.13,
-        });
-
-        const check = item.querySelector('.wa-check');
-        if (check) {
-            gsap.from(check, {
-                scale: 0,
-                duration: 0.5,
-                ease: "elastic.out(1, 0.5)",
-                scrollTrigger: {
-                    trigger: item,
-                    start: "top 90%",
-                    toggleActions: "play none none none",
-                },
-                delay: i * 0.13 + 0.1,
-            });
-        }
-    });
-    gsap.set("[data-pq-item]", { opacity: 0, x: 20 });
-
-    // Parallax on caderno image (subtle translateY, no float)
+    // Parallax on caderno image — fourth fold
     gsap.to("#pq-image", {
         y: -25,
         ease: "none",
@@ -3151,24 +2729,7 @@
         }
     });
 
-
-    /* ══════════════════════════════════════════════
-       FIFTH FOLD — GSAP ANIMATIONS (MENTORA)
-       ══════════════════════════════════════════════ */
-
-    // Divider 4
-    gsap.to("#section-divider-4", {
-        scaleX: 1,
-        duration: 0.6,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#section-divider-4",
-            start: "top 90%",
-            toggleActions: "play none none none",
-        }
-    });
-
-    // Watermark subtle parallax
+    // Watermark subtle parallax — fifth fold
     gsap.to("#mentora-watermark", {
         y: -60,
         ease: "none",
@@ -3180,65 +2741,7 @@
         }
     });
 
-    // Label
-    gsap.to("#mentora-label", {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#mentora-section",
-            start: "top 80%",
-            toggleActions: "play none none none",
-        }
-    });
-    gsap.set("#mentora-label", { opacity: 0, y: 15 });
-
-    // Title line
-    gsap.to("#mentora-title-line", {
-        scaleX: 1,
-        duration: 0.6,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#mentora-title",
-            start: "top 80%",
-            toggleActions: "play none none none",
-        }
-    });
-
-    // Title chars
-    if (typeof Splitting !== 'undefined') {
-        Splitting({ target: '#mentora-title [data-splitting]' });
-    }
-    const mentoraChars = document.querySelectorAll("#mentora-title .char");
-    gsap.to(mentoraChars, {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        stagger: 0.06,
-        ease: "power3.out",
-        scrollTrigger: {
-            trigger: "#mentora-title",
-            start: "top 80%",
-            toggleActions: "play none none none",
-        }
-    });
-
-    // Image slides in from left
-    gsap.to("#mentora-img", {
-        opacity: 1,
-        x: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#mentora-img",
-            start: "top 82%",
-            toggleActions: "play none none none",
-        }
-    });
-    gsap.set("#mentora-img", { x: -40 });
-
-    // Image parallax
+    // Image parallax — fifth fold
     gsap.to("#mentora-img", {
         y: -20,
         ease: "none",
@@ -3249,66 +2752,6 @@
             scrub: 1,
         }
     });
-
-    // Name
-    gsap.to("#mentora-name", {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#mentora-name",
-            start: "top 88%",
-            toggleActions: "play none none none",
-        }
-    });
-    gsap.set("#mentora-name", { opacity: 0, y: 15 });
-
-    // Role
-    gsap.to("#mentora-role", {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#mentora-role",
-            start: "top 88%",
-            toggleActions: "play none none none",
-        },
-        delay: 0.1,
-    });
-    gsap.set("#mentora-role", { opacity: 0, y: 10 });
-
-    // Bio paragraphs stagger
-    ["#mentora-bio-1", "#mentora-bio-2", "#mentora-bio-3"].forEach((id, i) => {
-        gsap.to(id, {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: id,
-                start: "top 90%",
-                toggleActions: "play none none none",
-            },
-            delay: i * 0.12,
-        });
-        gsap.set(id, { opacity: 0, y: 20 });
-    });
-
-    // Stats
-    gsap.to("#mentora-stats", {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#mentora-stats",
-            start: "top 90%",
-            toggleActions: "play none none none",
-        }
-    });
-    gsap.set("#mentora-stats", { opacity: 0, y: 20 });
 
 
 </script>
@@ -3428,61 +2871,13 @@
 
 <script>
     /* ══════════════════════════════════════════════
-       PRICING SECTION — ANIMATIONS
+       PRICING SECTION — ANIMATIONS (functional only)
        ══════════════════════════════════════════════ */
 
     // Splitting.js for pricing titles
     if (typeof Splitting !== 'undefined') {
         Splitting({ target: '#pricing-section [data-splitting]' });
     }
-
-    // Header title chars
-    const pricingTitleChars = document.querySelectorAll('.pricing-header__title .char');
-    gsap.set(pricingTitleChars, { opacity: 0, y: 15 });
-    gsap.to(pricingTitleChars, {
-        opacity: 1, y: 0, duration: 0.4, stagger: 0.08, ease: "power3.out",
-        scrollTrigger: { trigger: "#pricing-section", start: "top 90%", toggleActions: "play none none none" }
-    });
-
-    // Header subtitle
-    gsap.set('.pricing-header__sub', { opacity: 0, y: 10 });
-    gsap.to('.pricing-header__sub', {
-        opacity: 1, y: 0, duration: 0.5, delay: 0.2, ease: "power2.out",
-        scrollTrigger: { trigger: "#pricing-section", start: "top 90%", toggleActions: "play none none none" }
-    });
-
-    // Decorative line
-    gsap.to('#pricing-line', {
-        scaleX: 1, duration: 0.6, delay: 0.3, ease: "power2.out",
-        scrollTrigger: { trigger: "#pricing-section", start: "top 90%", toggleActions: "play none none none" }
-    });
-
-    // Card entrance
-    gsap.to('#pricing-card-wrapper', {
-        opacity: 1, scale: 1, duration: 0.6, delay: 0.3, ease: "power3.out",
-        scrollTrigger: { trigger: "#pricing-card-wrapper", start: "top 90%", toggleActions: "play none none none" }
-    });
-
-    // Left column — branding lines stagger
-    gsap.set('.pricing-brand__label, .pricing-brand__name .line-light, .pricing-brand__name .line-bold', { opacity: 0, y: 20 });
-    gsap.to('.pricing-brand__label, .pricing-brand__name .line-light, .pricing-brand__name .line-bold', {
-        opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power2.out",
-        scrollTrigger: { trigger: ".pricing-left", start: "top 85%", toggleActions: "play none none none" }
-    });
-
-    // Dots
-    gsap.set('.pricing-dots', { opacity: 0 });
-    gsap.to('.pricing-dots', {
-        opacity: 0.5, duration: 0.4, delay: 0.5, ease: "power2.out",
-        scrollTrigger: { trigger: ".pricing-left", start: "top 85%", toggleActions: "play none none none" }
-    });
-
-    // Price old
-    gsap.set('.pricing-price-old', { opacity: 0, x: -10 });
-    gsap.to('.pricing-price-old', {
-        opacity: 1, x: 0, duration: 0.4, delay: 0.6, ease: "power2.out",
-        scrollTrigger: { trigger: ".pricing-left", start: "top 85%", toggleActions: "play none none none" }
-    });
 
     // CountUp for price
     let pricingCountStarted = false;
@@ -3499,52 +2894,6 @@
                 priceCounter.start();
             }
         }
-    });
-
-    // CTA button
-    gsap.set('#pricing-cta-main', { opacity: 0, scale: 0.9 });
-    gsap.to('#pricing-cta-main', {
-        opacity: 1, scale: 1, duration: 0.5, delay: 0.8, ease: "elastic.out(1, 0.6)",
-        scrollTrigger: { trigger: ".pricing-left", start: "top 85%", toggleActions: "play none none none" }
-    });
-
-    // Detail items stagger
-    gsap.set('.pricing-detail-item', { opacity: 0, y: 10 });
-    gsap.to('.pricing-detail-item', {
-        opacity: 1, y: 0, duration: 0.4, stagger: 0.1, delay: 1, ease: "power2.out",
-        scrollTrigger: { trigger: ".pricing-left", start: "top 85%", toggleActions: "play none none none" }
-    });
-
-    // Right column title chars
-    const pricingRightChars = document.querySelectorAll('.pricing-right__title .char');
-    gsap.set(pricingRightChars, { opacity: 0, y: 10 });
-    gsap.to(pricingRightChars, {
-        opacity: 1, y: 0, duration: 0.4, stagger: 0.07, ease: "power3.out",
-        scrollTrigger: { trigger: ".pricing-right", start: "top 85%", toggleActions: "play none none none" },
-        delay: 0.9
-    });
-
-    // Deliverable items
-    gsap.set('.pricing-item', { opacity: 0, x: 15 });
-    gsap.to('.pricing-item', {
-        opacity: 1, x: 0, duration: 0.4, stagger: 0.1, ease: "power2.out",
-        scrollTrigger: { trigger: ".pricing-items", start: "top 85%", toggleActions: "play none none none" },
-        delay: 1
-    });
-
-    // Check icons elastic
-    gsap.set('.pricing-check', { scale: 0 });
-    gsap.to('.pricing-check', {
-        scale: 1, duration: 0.4, stagger: 0.1, ease: "elastic.out(1, 0.5)",
-        scrollTrigger: { trigger: ".pricing-items", start: "top 85%", toggleActions: "play none none none" },
-        delay: 1.05
-    });
-
-    // Urgency badge
-    gsap.set('#pricing-urgency', { opacity: 0, scale: 0.95 });
-    gsap.to('#pricing-urgency', {
-        opacity: 1, scale: 1, duration: 0.5, ease: "power2.out",
-        scrollTrigger: { trigger: "#pricing-urgency", start: "top 92%", toggleActions: "play none none none" }
     });
 
     // Parallax exit
@@ -3806,22 +3155,8 @@
     window.addEventListener('resize', init);
     init();
 
-    // GSAP
+    // Splitting (keep for styling, no animation)
     if (typeof Splitting !== 'undefined') Splitting({ target: '.depoimentos-header__title', by: 'words' });
-    gsap.registerPlugin(ScrollTrigger);
-    const depWords = document.querySelectorAll('.depoimentos-header__title .word');
-    if (depWords.length) {
-        gsap.set(depWords, { opacity: 0, y: 15 });
-        ScrollTrigger.create({
-            trigger: '#depoimentos-section', start: 'top 80%', once: true,
-            onEnter: () => {
-                gsap.to(depWords, { opacity: 1, y: 0, stagger: 0.08, duration: 0.5, ease: 'power2.out' });
-                gsap.fromTo('#depoimentos-line', { scaleX: 0 }, { scaleX: 1, duration: 0.6, delay: 0.3, ease: 'power2.out' });
-                gsap.fromTo('.depoimento-slide', { opacity: 0, y: 30 },
-                    { opacity: (i, el) => el.classList.contains('is-active') ? 1 : 0.75, y: 0, stagger: 0.1, duration: 0.6, delay: 0.5, ease: 'power2.out', onComplete: updateClasses });
-            }
-        });
-    }
 })();
 </script>
 
@@ -4276,32 +3611,11 @@
     const first = items[0];
     if (first) { openItem(first); }
 
-    /* ── GSAP Animations ── */
+    /* ── Splitting (keep for styling, no animation) ── */
     if (typeof Splitting !== 'undefined') Splitting({ target: '.faq-header__title', by: 'words' });
-    gsap.registerPlugin(ScrollTrigger);
 
-    const faqWords = document.querySelectorAll('.faq-header__title .word');
-    if (faqWords.length) {
-        gsap.set(faqWords, { opacity: 0, y: 40 });
-        gsap.set('.faq-item', { opacity: 0, y: 20 });
-    }
-
-    ScrollTrigger.create({
-        trigger: '#faq', start: 'top 80%', once: true,
-        onEnter: () => {
-            gsap.to(faqWords, { opacity: 1, y: 0, stagger: 0.1, duration: 0.5, ease: 'power2.out' });
-            gsap.to('#faq-line', { scaleX: 1, duration: 0.6, delay: 0.3, ease: 'power2.out' });
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach((item, i) => {
-                gsap.to(item, {
-                    opacity: 1, y: 0, duration: 0.5,
-                    delay: 0.5 + i * 0.1,
-                    ease: 'power2.out',
-                    onStart: () => item.classList.add('is-visible')
-                });
-            });
-        }
-    });
+    // Make all FAQ items visible and add is-visible class for border animation
+    document.querySelectorAll('.faq-item').forEach(item => item.classList.add('is-visible'));
 })();
 </script>
 
@@ -4374,8 +3688,6 @@
     font-weight: 500;
     color: var(--text-white);
     margin: 0;
-    opacity: 0;
-    transform: translateY(20px);
 }
 
 .contato-line2 {
@@ -4384,8 +3696,6 @@
     font-weight: 400;
     color: var(--text-secondary);
     margin: 0 0 0.5rem 0;
-    opacity: 0;
-    transform: translateY(15px);
 }
 
 .whatsapp-btn {
@@ -4400,8 +3710,6 @@
     text-decoration: none;
     padding: 0.9rem 2rem;
     border-radius: 50px;
-    opacity: 0;
-    transform: scale(0.9);
     transition: all 250ms ease;
     will-change: transform;
 }
@@ -4481,61 +3789,7 @@
 }
 </style>
 
-<script>
-(function(){
-    /* ── Animações dos dividers extras ── */
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Divider 5: Mentora → Pricing
-    gsap.set('#section-divider-5', { opacity: 0 });
-    gsap.to('#section-divider-5', {
-        opacity: 0.5, duration: 0.4,
-        scrollTrigger: { trigger: '#section-divider-5', start: 'top 90%', toggleActions: 'play none none none' }
-    });
-
-    // Divider 6: Pricing → Depoimentos
-    gsap.set('#section-divider-6', { opacity: 0 });
-    gsap.to('#section-divider-6', {
-        opacity: 0.5, duration: 0.4,
-        scrollTrigger: { trigger: '#section-divider-6', start: 'top 90%', toggleActions: 'play none none none' }
-    });
-
-    // Divider 7: Depoimentos → FAQ
-    gsap.set('#section-divider-7', { opacity: 0 });
-    gsap.to('#section-divider-7', {
-        opacity: 0.5, duration: 0.4,
-        scrollTrigger: { trigger: '#section-divider-7', start: 'top 90%', toggleActions: 'play none none none' }
-    });
-
-    /* ── Animações de entrada do Contato ── */
-
-    // Configurar estado inicial
-    gsap.set('#contato-divider', { scaleX: 0 });
-    gsap.set('#contato-line1', { opacity: 0, y: 20 });
-    gsap.set('#contato-line2', { opacity: 0, y: 15 });
-    gsap.set('#whatsapp-btn', { opacity: 0, scale: 0.9 });
-
-    ScrollTrigger.create({
-        trigger: '#contato',
-        start: 'top 80%',
-        once: true,
-        onEnter: () => {
-            gsap.to('#contato-divider', {
-                scaleX: 1, duration: 0.6, ease: 'power2.out'
-            });
-            gsap.to('#contato-line1', {
-                opacity: 1, y: 0, duration: 0.5, delay: 0.1, ease: 'power2.out'
-            });
-            gsap.to('#contato-line2', {
-                opacity: 1, y: 0, duration: 0.5, delay: 0.2, ease: 'power2.out'
-            });
-            gsap.to('#whatsapp-btn', {
-                opacity: 1, scale: 1, duration: 0.6, delay: 0.3, ease: 'elastic.out(1, 0.5)'
-            });
-        }
-    });
-})();
-</script>
+<!-- No entrance animations -->
 
 </body>
 </html>
