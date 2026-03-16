@@ -1096,10 +1096,24 @@
         .wa-card-outer {
             position: relative;
             border-radius: 20px;
-            padding: 1px;
-            background: linear-gradient(135deg, rgba(179, 162, 117, 0.4), rgba(179, 162, 117, 0.08), rgba(179, 162, 117, 0.25));
+            padding: 0;
+            background: transparent;
             opacity: 0;
             transition: box-shadow 0.4s ease;
+        }
+
+        .wa-card-outer::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(179, 162, 117, 0.4), rgba(179, 162, 117, 0.08), rgba(179, 162, 117, 0.25));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            z-index: 1;
         }
 
         .wa-card-outer:hover {
@@ -1108,7 +1122,7 @@
 
         .wa-card-inner {
             background: var(--bg-card-dark);
-            border-radius: 19px;
+            border-radius: 20px;
             padding: 3rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
