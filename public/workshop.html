@@ -3611,32 +3611,11 @@
     const first = items[0];
     if (first) { openItem(first); }
 
-    /* ── GSAP Animations ── */
+    /* ── Splitting (keep for styling, no animation) ── */
     if (typeof Splitting !== 'undefined') Splitting({ target: '.faq-header__title', by: 'words' });
-    gsap.registerPlugin(ScrollTrigger);
 
-    const faqWords = document.querySelectorAll('.faq-header__title .word');
-    if (faqWords.length) {
-        gsap.set(faqWords, { opacity: 0, y: 40 });
-        gsap.set('.faq-item', { opacity: 0, y: 20 });
-    }
-
-    ScrollTrigger.create({
-        trigger: '#faq', start: 'top 80%', once: true,
-        onEnter: () => {
-            gsap.to(faqWords, { opacity: 1, y: 0, stagger: 0.1, duration: 0.5, ease: 'power2.out' });
-            gsap.to('#faq-line', { scaleX: 1, duration: 0.6, delay: 0.3, ease: 'power2.out' });
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach((item, i) => {
-                gsap.to(item, {
-                    opacity: 1, y: 0, duration: 0.5,
-                    delay: 0.5 + i * 0.1,
-                    ease: 'power2.out',
-                    onStart: () => item.classList.add('is-visible')
-                });
-            });
-        }
-    });
+    // Make all FAQ items visible and add is-visible class for border animation
+    document.querySelectorAll('.faq-item').forEach(item => item.classList.add('is-visible'));
 })();
 </script>
 
