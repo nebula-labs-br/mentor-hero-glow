@@ -2871,61 +2871,13 @@
 
 <script>
     /* ══════════════════════════════════════════════
-       PRICING SECTION — ANIMATIONS
+       PRICING SECTION — ANIMATIONS (functional only)
        ══════════════════════════════════════════════ */
 
     // Splitting.js for pricing titles
     if (typeof Splitting !== 'undefined') {
         Splitting({ target: '#pricing-section [data-splitting]' });
     }
-
-    // Header title chars
-    const pricingTitleChars = document.querySelectorAll('.pricing-header__title .char');
-    gsap.set(pricingTitleChars, { opacity: 0, y: 15 });
-    gsap.to(pricingTitleChars, {
-        opacity: 1, y: 0, duration: 0.4, stagger: 0.08, ease: "power3.out",
-        scrollTrigger: { trigger: "#pricing-section", start: "top 90%", toggleActions: "play none none none" }
-    });
-
-    // Header subtitle
-    gsap.set('.pricing-header__sub', { opacity: 0, y: 10 });
-    gsap.to('.pricing-header__sub', {
-        opacity: 1, y: 0, duration: 0.5, delay: 0.2, ease: "power2.out",
-        scrollTrigger: { trigger: "#pricing-section", start: "top 90%", toggleActions: "play none none none" }
-    });
-
-    // Decorative line
-    gsap.to('#pricing-line', {
-        scaleX: 1, duration: 0.6, delay: 0.3, ease: "power2.out",
-        scrollTrigger: { trigger: "#pricing-section", start: "top 90%", toggleActions: "play none none none" }
-    });
-
-    // Card entrance
-    gsap.to('#pricing-card-wrapper', {
-        opacity: 1, scale: 1, duration: 0.6, delay: 0.3, ease: "power3.out",
-        scrollTrigger: { trigger: "#pricing-card-wrapper", start: "top 90%", toggleActions: "play none none none" }
-    });
-
-    // Left column — branding lines stagger
-    gsap.set('.pricing-brand__label, .pricing-brand__name .line-light, .pricing-brand__name .line-bold', { opacity: 0, y: 20 });
-    gsap.to('.pricing-brand__label, .pricing-brand__name .line-light, .pricing-brand__name .line-bold', {
-        opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: "power2.out",
-        scrollTrigger: { trigger: ".pricing-left", start: "top 85%", toggleActions: "play none none none" }
-    });
-
-    // Dots
-    gsap.set('.pricing-dots', { opacity: 0 });
-    gsap.to('.pricing-dots', {
-        opacity: 0.5, duration: 0.4, delay: 0.5, ease: "power2.out",
-        scrollTrigger: { trigger: ".pricing-left", start: "top 85%", toggleActions: "play none none none" }
-    });
-
-    // Price old
-    gsap.set('.pricing-price-old', { opacity: 0, x: -10 });
-    gsap.to('.pricing-price-old', {
-        opacity: 1, x: 0, duration: 0.4, delay: 0.6, ease: "power2.out",
-        scrollTrigger: { trigger: ".pricing-left", start: "top 85%", toggleActions: "play none none none" }
-    });
 
     // CountUp for price
     let pricingCountStarted = false;
@@ -2942,52 +2894,6 @@
                 priceCounter.start();
             }
         }
-    });
-
-    // CTA button
-    gsap.set('#pricing-cta-main', { opacity: 0, scale: 0.9 });
-    gsap.to('#pricing-cta-main', {
-        opacity: 1, scale: 1, duration: 0.5, delay: 0.8, ease: "elastic.out(1, 0.6)",
-        scrollTrigger: { trigger: ".pricing-left", start: "top 85%", toggleActions: "play none none none" }
-    });
-
-    // Detail items stagger
-    gsap.set('.pricing-detail-item', { opacity: 0, y: 10 });
-    gsap.to('.pricing-detail-item', {
-        opacity: 1, y: 0, duration: 0.4, stagger: 0.1, delay: 1, ease: "power2.out",
-        scrollTrigger: { trigger: ".pricing-left", start: "top 85%", toggleActions: "play none none none" }
-    });
-
-    // Right column title chars
-    const pricingRightChars = document.querySelectorAll('.pricing-right__title .char');
-    gsap.set(pricingRightChars, { opacity: 0, y: 10 });
-    gsap.to(pricingRightChars, {
-        opacity: 1, y: 0, duration: 0.4, stagger: 0.07, ease: "power3.out",
-        scrollTrigger: { trigger: ".pricing-right", start: "top 85%", toggleActions: "play none none none" },
-        delay: 0.9
-    });
-
-    // Deliverable items
-    gsap.set('.pricing-item', { opacity: 0, x: 15 });
-    gsap.to('.pricing-item', {
-        opacity: 1, x: 0, duration: 0.4, stagger: 0.1, ease: "power2.out",
-        scrollTrigger: { trigger: ".pricing-items", start: "top 85%", toggleActions: "play none none none" },
-        delay: 1
-    });
-
-    // Check icons elastic
-    gsap.set('.pricing-check', { scale: 0 });
-    gsap.to('.pricing-check', {
-        scale: 1, duration: 0.4, stagger: 0.1, ease: "elastic.out(1, 0.5)",
-        scrollTrigger: { trigger: ".pricing-items", start: "top 85%", toggleActions: "play none none none" },
-        delay: 1.05
-    });
-
-    // Urgency badge
-    gsap.set('#pricing-urgency', { opacity: 0, scale: 0.95 });
-    gsap.to('#pricing-urgency', {
-        opacity: 1, scale: 1, duration: 0.5, ease: "power2.out",
-        scrollTrigger: { trigger: "#pricing-urgency", start: "top 92%", toggleActions: "play none none none" }
     });
 
     // Parallax exit
