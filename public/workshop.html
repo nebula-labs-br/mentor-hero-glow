@@ -3155,22 +3155,8 @@
     window.addEventListener('resize', init);
     init();
 
-    // GSAP
+    // Splitting (keep for styling, no animation)
     if (typeof Splitting !== 'undefined') Splitting({ target: '.depoimentos-header__title', by: 'words' });
-    gsap.registerPlugin(ScrollTrigger);
-    const depWords = document.querySelectorAll('.depoimentos-header__title .word');
-    if (depWords.length) {
-        gsap.set(depWords, { opacity: 0, y: 15 });
-        ScrollTrigger.create({
-            trigger: '#depoimentos-section', start: 'top 80%', once: true,
-            onEnter: () => {
-                gsap.to(depWords, { opacity: 1, y: 0, stagger: 0.08, duration: 0.5, ease: 'power2.out' });
-                gsap.fromTo('#depoimentos-line', { scaleX: 0 }, { scaleX: 1, duration: 0.6, delay: 0.3, ease: 'power2.out' });
-                gsap.fromTo('.depoimento-slide', { opacity: 0, y: 30 },
-                    { opacity: (i, el) => el.classList.contains('is-active') ? 1 : 0.75, y: 0, stagger: 0.1, duration: 0.6, delay: 0.5, ease: 'power2.out', onComplete: updateClasses });
-            }
-        });
-    }
 })();
 </script>
 
