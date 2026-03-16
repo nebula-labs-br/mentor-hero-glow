@@ -414,34 +414,54 @@
         .btn-cta:hover svg { transform: translateX(4px); }
 
         /* ══════════════════════════════════════════════
-           TICKET PROGRESS BAR
+           TICKET PROGRESS CARD
            ══════════════════════════════════════════════ */
         .ticket-block {
+            background: linear-gradient(145deg, rgba(20, 36, 38, 0.95) 0%, rgba(12, 24, 26, 0.98) 100%);
+            border: 1px solid rgba(179, 162, 117, 0.15);
+            border-radius: 20px;
+            padding: 28px 28px 24px;
+            max-width: 460px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle gold shimmer top edge */
+        .ticket-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20%;
+            right: 20%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold-light), transparent);
+            opacity: 0.5;
         }
 
         .ticket-urgency {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-bottom: 14px;
-            padding: 6px 14px;
+            margin-bottom: 20px;
+            padding: 7px 16px;
             border-radius: 999px;
-            background: rgba(255, 80, 50, 0.12);
-            border: 1px solid rgba(255, 80, 50, 0.25);
+            background: rgba(179, 162, 117, 0.1);
+            border: 1px solid rgba(179, 162, 117, 0.2);
             font-family: var(--font-secondary);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
-            color: var(--accent-urgency);
-            letter-spacing: 0.5px;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        .ticket-urgency svg { width: 14px; height: 14px; animation: pulse-dot 1.5s ease-in-out infinite; flex-shrink: 0; }
+        .ticket-urgency svg { width: 13px; height: 13px; flex-shrink: 0; }
 
         .progress-label {
             font-family: var(--font-secondary);
             font-size: 13px;
-            font-weight: 600;
-            color: rgba(255,255,255,0.5);
+            font-weight: 500;
+            color: rgba(255,255,255,0.4);
             margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
@@ -449,58 +469,49 @@
         }
 
         .progress-label .count {
-            color: var(--accent-green);
-            font-weight: 800;
-            font-size: 15px;
+            color: rgba(255,255,255,0.7);
+            font-weight: 700;
+            font-size: 13px;
         }
 
         .progress-bar-track {
             width: 100%;
             max-width: 420px;
-            height: 10px;
-            background: rgba(255,255,255,0.08);
+            height: 6px;
+            background: rgba(255,255,255,0.06);
             border-radius: 999px;
             overflow: hidden;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             position: relative;
         }
 
         .progress-bar-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, var(--accent-danger) 0%, var(--accent-danger-light) 100%);
+            background: linear-gradient(90deg, var(--accent-gold) 0%, var(--accent-gold-light) 100%);
             border-radius: 999px;
             position: relative;
-            box-shadow: 0 0 16px rgba(255, 68, 68, 0.5);
+            box-shadow: 0 0 12px rgba(179, 162, 117, 0.3);
             will-change: width;
         }
 
         .progress-bar-fill::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 16px;
-            height: 16px;
-            background: var(--text-white);
-            border-radius: 50%;
-            box-shadow: 0 0 12px var(--accent-green);
+            display: none;
         }
 
         /* Price anchor */
         .price-row {
             display: flex;
             align-items: baseline;
-            gap: 16px;
+            gap: 14px;
             flex-wrap: wrap;
         }
 
         .price-old {
             font-family: var(--font-secondary);
-            font-size: 15px;
-            font-weight: 500;
-            color: rgba(255,255,255,0.35);
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.3);
             text-decoration: line-through;
         }
 
@@ -512,7 +523,7 @@
         }
 
         .price-current span {
-            color: var(--accent-green);
+            color: var(--text-white);
         }
 
         /* ══════════════════════════════════════════════
