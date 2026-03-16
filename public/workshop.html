@@ -3789,61 +3789,7 @@
 }
 </style>
 
-<script>
-(function(){
-    /* ── Animações dos dividers extras ── */
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Divider 5: Mentora → Pricing
-    gsap.set('#section-divider-5', { opacity: 0 });
-    gsap.to('#section-divider-5', {
-        opacity: 0.5, duration: 0.4,
-        scrollTrigger: { trigger: '#section-divider-5', start: 'top 90%', toggleActions: 'play none none none' }
-    });
-
-    // Divider 6: Pricing → Depoimentos
-    gsap.set('#section-divider-6', { opacity: 0 });
-    gsap.to('#section-divider-6', {
-        opacity: 0.5, duration: 0.4,
-        scrollTrigger: { trigger: '#section-divider-6', start: 'top 90%', toggleActions: 'play none none none' }
-    });
-
-    // Divider 7: Depoimentos → FAQ
-    gsap.set('#section-divider-7', { opacity: 0 });
-    gsap.to('#section-divider-7', {
-        opacity: 0.5, duration: 0.4,
-        scrollTrigger: { trigger: '#section-divider-7', start: 'top 90%', toggleActions: 'play none none none' }
-    });
-
-    /* ── Animações de entrada do Contato ── */
-
-    // Configurar estado inicial
-    gsap.set('#contato-divider', { scaleX: 0 });
-    gsap.set('#contato-line1', { opacity: 0, y: 20 });
-    gsap.set('#contato-line2', { opacity: 0, y: 15 });
-    gsap.set('#whatsapp-btn', { opacity: 0, scale: 0.9 });
-
-    ScrollTrigger.create({
-        trigger: '#contato',
-        start: 'top 80%',
-        once: true,
-        onEnter: () => {
-            gsap.to('#contato-divider', {
-                scaleX: 1, duration: 0.6, ease: 'power2.out'
-            });
-            gsap.to('#contato-line1', {
-                opacity: 1, y: 0, duration: 0.5, delay: 0.1, ease: 'power2.out'
-            });
-            gsap.to('#contato-line2', {
-                opacity: 1, y: 0, duration: 0.5, delay: 0.2, ease: 'power2.out'
-            });
-            gsap.to('#whatsapp-btn', {
-                opacity: 1, scale: 1, duration: 0.6, delay: 0.3, ease: 'elastic.out(1, 0.5)'
-            });
-        }
-    });
-})();
-</script>
+<!-- No entrance animations -->
 
 </body>
 </html>
