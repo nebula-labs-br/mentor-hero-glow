@@ -526,6 +526,30 @@
             color: var(--text-white);
         }
 
+        /* Info bar inside ticket block - hidden on desktop, shown on mobile */
+        .ticket-info-bar {
+            display: none;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .ticket-info-bar .info-item {
+            font-size: 11px;
+            gap: 5px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .ticket-info-bar .info-item svg {
+            width: 12px;
+            height: 12px;
+            opacity: 0.6;
+        }
+
         /* ══════════════════════════════════════════════
            RIGHT COLUMN – MENTOR IMAGE
            ══════════════════════════════════════════════ */
