@@ -15,8 +15,9 @@
     <link rel="preload" as="image" href="images/mentora-mobile.webp" type="image/webp" media="(max-width:768px)"/>
     <link rel="preload" as="image" href="images/mentora.webp" type="image/webp" media="(min-width:769px)"/>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <!-- Google Fonts — non-blocking -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap"/></noscript>
 
     <!-- SEO Primary -->
     <title>Workshop Criando Minha Consultoria Lucrativa | Devolvi Meu Crachá — R$49</title>
