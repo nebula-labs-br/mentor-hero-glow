@@ -732,7 +732,27 @@
             .mentor-frame, .mentor-frame-bottom { display: none; }
 
             .hero-info-bar {
-                display: none;
+                position: relative;
+                padding: 14px 5vw;
+                gap: 16px;
+                justify-content: center;
+                margin-top: 0;
+                margin-bottom: 8px;
+                background: rgba(255,255,255,0.03);
+                border-top: none;
+                border-bottom: none;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+
+            .hero-info-bar .info-item {
+                font-size: 11px;
+                gap: 6px;
+            }
+
+            .hero-info-bar .info-item svg {
+                width: 13px;
+                height: 13px;
             }
 
             .mobile-sticky-cta { display: block; }
