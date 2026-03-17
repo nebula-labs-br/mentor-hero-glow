@@ -317,7 +317,7 @@
         .hero-title {
             font-family: var(--font-primary);
             font-size: clamp(1.8rem, 3.5vw, 3rem);
-            font-weight: 900;
+            font-weight: 700;
             line-height: 1.12;
             letter-spacing: -1.5px;
             color: var(--text-white);
@@ -732,8 +732,32 @@
             .mentor-frame, .mentor-frame-bottom { display: none; }
 
             .hero-info-bar {
-                display: none;
+                position: relative;
+                order: 5;
+                padding: 10px 5vw;
+                gap: 12px;
+                justify-content: center;
+                background: rgba(255,255,255,0.03);
+                border-top: none;
+                border-bottom: none;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                margin-bottom: 8px;
             }
+
+            .hero-info-bar .info-item {
+                font-size: 11px;
+                gap: 5px;
+            }
+
+            .hero-info-bar .info-item svg {
+                width: 12px;
+                height: 12px;
+            }
+
+            .mobile-hero-top { order: 4; }
+            .hero-container { order: 6; }
+            #tsparticles, .hero-grid-overlay, .hero-vignette { order: 1; }
 
             .mobile-sticky-cta { display: block; }
 
@@ -2628,12 +2652,18 @@ fbq('track', 'PageView');
         }
 
         .mentora-stats {
-            gap: 20px;
-            flex-wrap: wrap;
+            gap: 16px;
+            flex-wrap: nowrap;
+            flex-direction: row;
+            justify-content: space-between;
         }
 
         .mentora-stat-number {
-            font-size: 22px;
+            font-size: 20px;
+        }
+
+        .mentora-stat-label {
+            font-size: 10px;
         }
 
         .mentora-bio-text {
@@ -2977,7 +3007,6 @@ fbq('track', 'PageView');
                         <div class="pricing-item__text">
                             <span class="pricing-guarantee-badge">GARANTIA TOTAL</span><br/>
                             7 dias de garantia incondicional
-                            <div class="pricing-guarantee-sub">Se em 7 dias você sentir que não valeu cada centavo, devolvemos tudo. Sem perguntas.</div>
                         </div>
                     </div>
                 </div>
