@@ -733,27 +733,31 @@
 
             .hero-info-bar {
                 position: relative;
-                padding: 14px 5vw;
-                gap: 16px;
+                order: 5;
+                padding: 10px 5vw;
+                gap: 12px;
                 justify-content: center;
-                margin-top: 0;
-                margin-bottom: 8px;
                 background: rgba(255,255,255,0.03);
                 border-top: none;
                 border-bottom: none;
                 backdrop-filter: none;
                 -webkit-backdrop-filter: none;
+                margin-bottom: 8px;
             }
 
             .hero-info-bar .info-item {
                 font-size: 11px;
-                gap: 6px;
+                gap: 5px;
             }
 
             .hero-info-bar .info-item svg {
-                width: 13px;
-                height: 13px;
+                width: 12px;
+                height: 12px;
             }
+
+            .mobile-hero-top { order: 4; }
+            .hero-container { order: 6; }
+            #tsparticles, .hero-grid-overlay, .hero-vignette { order: 1; }
 
             .mobile-sticky-cta { display: block; }
 
