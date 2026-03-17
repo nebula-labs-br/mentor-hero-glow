@@ -771,6 +771,9 @@
                 padding: 22px 20px 20px;
                 border-radius: 16px;
                 margin-top: 8px;
+                background: linear-gradient(145deg, rgba(26, 46, 50, 0.98) 0%, rgba(16, 32, 36, 1) 100%);
+                border: 1px solid rgba(179, 162, 117, 0.22);
+                box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(179, 162, 117, 0.08);
             }
 
             .ticket-urgency {
@@ -782,6 +785,11 @@
             .progress-label {
                 font-size: 11px;
                 margin-bottom: 8px;
+                justify-content: flex-start;
+            }
+
+            .progress-label > span:first-child {
+                display: none;
             }
 
             .progress-bar-track {
