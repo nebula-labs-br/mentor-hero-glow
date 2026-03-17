@@ -2648,12 +2648,18 @@ fbq('track', 'PageView');
         }
 
         .mentora-stats {
-            gap: 20px;
-            flex-wrap: wrap;
+            gap: 16px;
+            flex-wrap: nowrap;
+            flex-direction: row;
+            justify-content: space-between;
         }
 
         .mentora-stat-number {
-            font-size: 22px;
+            font-size: 20px;
+        }
+
+        .mentora-stat-label {
+            font-size: 10px;
         }
 
         .mentora-bio-text {
